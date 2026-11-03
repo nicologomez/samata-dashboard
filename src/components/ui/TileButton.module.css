@@ -1,0 +1,26 @@
+.tile {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  text-align: left;
+  box-shadow: var(--effect-shadows-shadow-xs);
+}
+.tile:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-primary-brand);
+}
+.tile:active,
+.tile[aria-pressed="true"] {
+  border-color: var(--border-brand);
+  background: var(--bg-brand-subtle);
+}
+.tile:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

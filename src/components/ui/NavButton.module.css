@@ -1,0 +1,15 @@
+.link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.link:hover,
+.active {
+  background: var(--bg-brand-subtle);
+  color: var(--text-brand-dark);
+}

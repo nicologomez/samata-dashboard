@@ -1,0 +1,17 @@
+.toast {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--effect-shadows-shadow-sm);
+}
+.success {
+  color: var(--text-success);
+  background: var(--bg-success);
+}
+.error {
+  color: var(--text-error);
+  background: var(--bg-error);
+}

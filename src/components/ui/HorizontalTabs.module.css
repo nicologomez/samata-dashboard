@@ -1,0 +1,23 @@
+.tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-default);
+  overflow-x: auto;
+}
+.tabs button {
+  flex: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 10px 4px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.tabs button[aria-selected="true"] {
+  border-bottom-color: var(--border-brand);
+  color: var(--text-brand-dark);
+}
+.tabs button:hover {
+  color: var(--text-brand);
+}

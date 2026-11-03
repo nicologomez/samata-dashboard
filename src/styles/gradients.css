@@ -1,0 +1,159 @@
+:root {
+  --gradient-aqua-w0-50-90: linear-gradient(
+    180deg,
+    var(--color-white-0) 0%,
+    var(--color-aqua-50) 100%
+  );
+
+  --gradient-aqua-50-100: linear-gradient(
+    180deg,
+    var(--color-aqua-50) 0%,
+    var(--color-aqua-100) 100%
+  );
+
+  --gradient-aqua-0-50-0-90: linear-gradient(
+    180deg,
+    var(--color-white-100) 0%,
+    var(--color-aqua-aqua-50) 50%,
+    var(--color-white-100) 100%
+  );
+
+  --gradient-aqua-50-w100-50-90: linear-gradient(
+    90deg,
+    var(--color-aqua-50) 0%,
+    var(--color-white-100) 40%,
+    var(--color--aqua-50) 100%
+  );
+
+  --gradient-aqua-50-w0-rad: radial-gradient(
+    ellipse 51.3113% 44.8486% at 50% 50%,
+    var(--color-white-0) 0%,
+    var(--color-aqua-50) 85%
+  );
+
+  --gradient-aqua-500-50-45: linear-gradient(
+    103.2648deg,
+    var(--color-aqua-500) 0%,
+    var(--color-aqua-50) 100%
+  );
+
+  --gradient-aqua-700-50-90: linear-gradient(
+    180deg,
+    var(--color-aqua-700) 0%,
+    var(--color-aqua-50) 70%
+  );
+
+  --gradient-aqua-700-500-600: linear-gradient(
+    90deg,
+    var(--color-aqua-700) 0%,
+    var(--color-aqua-500) 50%,
+    var(--color-aqua-600) 100%
+  );
+
+  --gradient-blue-0-50-0-90: linear-gradient(
+    180deg,
+    var(--color-white-100) 0%,
+    var(--color-blue-50) 50%,
+    var(--color-white-100) 100%
+  );
+
+  --gradient-blue-600-500-600: linear-gradient(
+    90deg,
+    var(--color-blue-600) 0%,
+    var(--color-blue-500) 50%,
+    var(--color-blue-600) 100%
+  );
+
+  --gradient-orange-600-50-90: linear-gradient(
+    180deg,
+    var(--color-blue-600) 0%,
+    var(--color-blue-50) 70%
+  );
+
+  --gradient-orange-0-50-0-90: linear-gradient(
+    180deg,
+    var(--color-white-100) 0%,
+    var(--color-orange-50) 50%,
+    var(--color-white-100) 100%
+  );
+
+  --gradient-orange-500-50-90: linear-gradient(
+    180deg,
+    var(--color-orange-500) 0%,
+    var(--color-orange-50) 70%
+  );
+
+  --gradient-orange-500-400-500: linear-gradient(
+    90deg,
+    var(--color-orange-500) 0%,
+    var(--color-orange-400) 50%,
+    var(--color-orange-500) 100%
+  );
+
+  --gradient-brand-orange50-aqua50: linear-gradient(
+    180deg,
+    var(--color-orange-50) 0%,
+    var(--color-aqua-50) 100%
+  );
+
+  --gradient-brand-blue50-aqua50: linear-gradient(
+    180deg,
+    var(--color-blue-50) 0%,
+    var(--color-aqua-50) 100%
+  );
+
+  --gradient-brand-white0-aqua400-90: linear-gradient(
+    180deg,
+    var(--color-white-0) 0%,
+    var(--color-aqua-400) 40.3846%
+  );
+
+  --gradient-brand-white0-blue500-90: linear-gradient(
+    180deg,
+    var(--color-white-0) 0%,
+    var(--color-blue-500) 100%
+  );
+
+  --gradient-brand-white0-orange500-90: linear-gradient(
+    180deg,
+    var(--color-white-0) 0%,
+    var(--color-orange-500) 100%
+  );
+
+  --gradient-aqua-600-700-90: linear-gradient(
+    180deg,
+    var(--color-aqua-600) 0%,
+    var(--color-aqua-700) 100%
+  );
+
+  --test: linear-gradient(
+    81.4436deg,
+    var(--color-aqua-600) 0.0001%,
+    var(--color-aqua-200) 89.4928%
+  );
+
+  --test2: linear-gradient(
+    87.7369deg,
+    var(--color-blue-300) 0.0001%,
+    var(--color-blue-100) 98.691%
+  );
+
+  --test3: linear-gradient(
+    357.8009deg,
+    var(--color-black-100) 1.9102%,
+    var(--color-error-200) 98.3542%
+  );
+
+  --soc5: linear-gradient(
+    180deg,
+    var(--color-aqua-800) 0%,
+    var(--color-aqua-700) 70%
+  );
+
+  --gray-100-200-100-90deg: linear-gradient(
+    180deg,
+    var(--color-gray-100) 0%,
+    var(--color-gray-200) 50%,
+    var(--color-gray-100) 100%
+  );
+}

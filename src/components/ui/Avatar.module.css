@@ -1,0 +1,12 @@
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text-brand-dark);
+  background: var(--bg-brand-subtle);
+  font:
+    600 13px/1 var(--font-poppins),
+    sans-serif;
+}
