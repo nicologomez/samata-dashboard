@@ -1,5 +1,5 @@
 :root {
-  --effect-temp-inner: inset 2px 4px 2px 0px rgba(255, 255, 255, 0.4);
+  --effect-temp-inner: inset 1px 2px 4px 0px rgba(255, 255, 255, 0.32);
   --effect-focus-ring: 0px 0px 0px 4px #029b99, 0px 0px 0px 2px #ffffff;
   --effect-shadow-focus: 0px 0px 5px 0px #029b99;
   --effect-shad:
@@ -7,7 +7,7 @@
     0px 0px 100px 0px rgba(185, 227, 227, 0.4);
   --effect-shadows-shadow-xs: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);
   --effect-shadows-shadow-xs-skeuomorphic:
-    0px 1px 2px 0px rgba(10, 13, 18, 0.05),
+    s 0px 1px 2px 0px rgba(10, 13, 18, 0.05),
     inset 0px -2px 0px 0px rgba(10, 13, 18, 0.05),
     inset 0px 0px 0px 1px rgba(10, 13, 18, 0.18);
   --effect-shadows-shadow-sm:

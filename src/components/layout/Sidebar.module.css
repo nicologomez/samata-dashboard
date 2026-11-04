@@ -7,17 +7,22 @@
   gap: 16px;
   overflow-y: auto;
   background: var(--bg-primary-brand);
-  padding: 24px 16px 16px;
-  border-right: 1px solid var(--border-subtle);
+  padding: var(--space-2xl) var(--space-4xl);
 }
 .brand {
   display: flex;
   align-items: center;
   gap: 8px;
   color: var(--text-brand-dark);
-  padding: 0 8px 16px;
+  padding: 0 var(--space-md) var(--space-2xl);
   border-bottom: 1px solid var(--border-default);
   white-space: nowrap;
+}
+.logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
 }
 .close {
   display: none;
@@ -110,7 +115,7 @@
 .usage {
   display: grid;
   gap: 5px;
-  background: var(--gradient-brand-blue50-aqua50);
+  background: var(--gradient-aqua-50-100);
   border-radius: 8px;
   padding: 16px;
   color: var(--text-secondary);

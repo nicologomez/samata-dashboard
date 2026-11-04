@@ -12,6 +12,8 @@ import type { DashboardData } from "@/types/dashboard";
 import { Icon } from "@/components/ui/Icon";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import styles from "./Sidebar.module.css";
+import Image from "next/image";
+import { Avatar } from "@/components/ui/Avatar";
 
 const navGroups: readonly NavGroup[] = ["Overview", "Workspace"];
 type Props = { data: DashboardData; open: boolean; onClose: () => void };
@@ -39,10 +41,15 @@ export function Sidebar({ data, open, onClose }: Props) {
       aria-label="Employer navigation"
     >
       <div className={styles.brand}>
-        <span aria-hidden="true" className="type-heading-h4">
-          ◈
-        </span>
-        <strong className="type-heading-h5">Samata Health</strong>
+        <Link href="/" aria-label="Go to Home">
+          <Image
+            src="/images/samata-logo.svg"
+            alt="Samata Health"
+            width={180}
+            height={40}
+            className={styles.logo}
+          />
+        </Link>
         <button
           type="button"
           className={styles.close}
@@ -64,12 +71,7 @@ export function Sidebar({ data, open, onClose }: Props) {
           aria-controls="organization-options"
           onClick={() => setOrgOpen((value) => !value)}
         >
-          <span
-            className={`${styles.companyMark} type-label-semibold-medium`}
-            aria-hidden="true"
-          >
-            T
-          </span>
+          <Avatar name={data.profile.company} size={36} />
           <span>
             <strong className="type-label-medium-medium">
               {data.profile.company}

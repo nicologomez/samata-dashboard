@@ -73,9 +73,6 @@
   gap: var(--space-7xl);
   min-width: 0;
   padding: var(--space-3xl);
-  background: var(--bg-primary);
-  border: var(--stroke-sm) solid var(--border-default);
-  border-radius: var(--radius-xl);
 }
 .statRow {
   display: flex;
@@ -137,7 +134,7 @@
   gap: var(--space-md);
 }
 .headingIcon {
-  color: var(--icon-primary);
+  color: var(--icon-tertiary);
 }
 .statItem {
   display: grid;

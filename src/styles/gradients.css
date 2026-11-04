@@ -96,6 +96,12 @@
     var(--color-aqua-50) 100%
   );
 
+  --gradient-brand-aqua50-blue100: linear-gradient(
+    180deg,
+    var(--color-aqua-50) 0%,
+    var(--color-blue-100) 100%
+  );
+
   --gradient-brand-blue50-aqua50: linear-gradient(
     180deg,
     var(--color-blue-50) 0%,

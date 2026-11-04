@@ -3,7 +3,13 @@
   place-items: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  flex: none;
+  border-radius: var(--radius-full);
   color: var(--text-brand-dark);
-  background: var(--bg-brand-subtle);
+  background: var(--color-blue-200);
+}
+
+.avatar[data-size="36"] {
+  width: 36px;
+  height: 36px;
 }
