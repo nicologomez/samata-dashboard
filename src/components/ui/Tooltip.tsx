@@ -12,10 +12,18 @@ export function Tooltip({
   const id = useId();
   return (
     <span className={styles.wrapper}>
-      <button type="button" aria-describedby={id} className={styles.trigger}>
+      <button
+        type="button"
+        aria-describedby={id}
+        className={`${styles.trigger} type-label-medium-small`}
+      >
         {children}
       </button>
-      <span role="tooltip" id={id} className={styles.bubble}>
+      <span
+        role="tooltip"
+        id={id}
+        className={`${styles.bubble} type-paragraph-xsmall`}
+      >
         {label}
       </span>
     </span>

@@ -7,6 +7,7 @@ import { ParticipationChart } from "@/features/dashboard/ParticipationChart";
 import { CareAccess } from "@/features/dashboard/CareAccess";
 import { TaskList } from "@/features/dashboard/TaskList";
 import { QuickActions } from "@/features/dashboard/QuickActions";
+import { Icon } from "@/components/ui/Icon";
 import { PeriodSelect } from "@/components/ui/PeriodSelect";
 import styles from "./DashboardView.module.css";
 
@@ -20,8 +21,10 @@ export function DashboardView({ data }: { data: DashboardData }) {
   return (
     <main className={styles.dashboard}>
       <div className={styles.welcome}>
-        <span>👋 Welcome back, {data.profile.user.split(" ")[0]}!</span>
-        <span>
+        <span className="type-paragraph-small">
+          👋 Welcome back, {data.profile.user.split(" ")[0]}!
+        </span>
+        <span className="type-paragraph-small">
           <span className={styles.statusDot} /> BambooHR Sync:{" "}
           {data.profile.syncConnected ? "Connected" : "Disconnected"}
         </span>
@@ -31,7 +34,14 @@ export function DashboardView({ data }: { data: DashboardData }) {
         <div className={styles.row}>
           <section aria-labelledby="glance-heading" className={styles.glance}>
             <div className={styles.heading}>
-              <h2 id="glance-heading">✧ At a Glance</h2>
+              <h2 id="glance-heading" className="type-label-medium-medium">
+                <Icon
+                  name="sparkles"
+                  size={14}
+                  className={styles.headingIcon}
+                />{" "}
+                At a Glance
+              </h2>
               <PeriodSelect
                 label="At a Glance period"
                 value={glancePeriod}
@@ -60,7 +70,17 @@ export function DashboardView({ data }: { data: DashboardData }) {
               className={styles.chart}
             >
               <div className={styles.heading}>
-                <h2 id="participation-heading">▥ Employee Participation</h2>
+                <h2
+                  id="participation-heading"
+                  className="type-label-medium-medium"
+                >
+                  <Icon
+                    name="bar-chart"
+                    size={14}
+                    className={styles.headingIcon}
+                  />{" "}
+                  Employee Participation
+                </h2>
                 <PeriodSelect
                   label="Employee Participation period"
                   value={participationPeriod}
@@ -69,14 +89,32 @@ export function DashboardView({ data }: { data: DashboardData }) {
               </div>
               <div className={styles.chartContent}>
                 <div className={styles.statRow}>
-                  <span>
-                    ● Active Participants{" "}
-                    <strong>{trend.at(-1)?.participants ?? 0}</strong>
-                  </span>
-                  <span>
-                    ● Sessions Completed{" "}
-                    <strong>{trend.at(-1)?.sessions ?? 0}</strong>
-                  </span>
+                  <div className={styles.statItem}>
+                    <span className="type-label-medium-medium">
+                      <Icon
+                        name="dot"
+                        size={8}
+                        className={styles.participantsDot}
+                      />{" "}
+                      Active Participants
+                    </span>
+                    <strong className="type-heading-alt-medium-h4">
+                      {trend.at(-1)?.participants ?? 0}
+                    </strong>
+                  </div>
+                  <div className={styles.statItem}>
+                    <span className="type-label-medium-medium">
+                      <Icon
+                        name="dot"
+                        size={8}
+                        className={styles.sessionsDot}
+                      />{" "}
+                      Sessions Completed
+                    </span>
+                    <strong className="type-heading-alt-medium-h4">
+                      {trend.at(-1)?.sessions ?? 0}
+                    </strong>
+                  </div>
                 </div>
                 <ParticipationChart data={trend} period={participationPeriod} />
               </div>

@@ -3,7 +3,6 @@ import { maxTrendValue } from "@/lib/trends";
 import styles from "./ParticipationChart.module.css";
 
 type SeriesKey = "participants" | "sessions";
-
 function coordinates(data: readonly TrendPoint[], key: SeriesKey): string {
   const max = maxTrendValue(data);
   return data
@@ -23,8 +22,11 @@ export function ParticipationChart({
   period: Period;
 }) {
   if (data.length === 0)
-    return <p role="status">No participation data for this period.</p>;
-
+    return (
+      <p role="status" className="type-paragraph-small">
+        No participation data for this period.
+      </p>
+    );
   return (
     <div className={styles.wrap}>
       <svg
@@ -32,7 +34,7 @@ export function ParticipationChart({
         role="img"
         aria-label={`${period} active participants and completed sessions demonstration chart`}
       >
-        {/* Removed <title> tag to prevent React 19 / Next.js metadata hydration conflicts */}
+        <title>{`${period} employee participation`}</title>
         {[40, 90, 140, 190].map((y) => (
           <line
             key={y}
@@ -59,13 +61,12 @@ export function ParticipationChart({
             x={42 + (index * 612) / Math.max(1, data.length - 1)}
             y="244"
             textAnchor="middle"
-            className={styles.label}
+            className={`${styles.label} type-paragraph-xsmall`}
           >
             {point.label}
           </text>
         ))}
       </svg>
-      <p className={styles.note}>Illustrative, anonymized demo counts.</p>
     </div>
   );
 }

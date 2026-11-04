@@ -8,7 +8,10 @@ export function Toast({
   tone?: "success" | "error";
 }) {
   return (
-    <output role="status" className={`${styles.toast} ${styles[tone]}`}>
+    <output
+      role="status"
+      className={`${styles.toast} ${styles[tone]} type-paragraph-small`}
+    >
       {message}
     </output>
   );

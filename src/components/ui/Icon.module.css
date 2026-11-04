@@ -1,0 +1,153 @@
+.icon {
+  display: block;
+  width: var(--icon-size, 24px);
+  height: var(--icon-size, 24px);
+  flex: none;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
+.icon[data-size="8"] {
+  --icon-size: 8px;
+}
+.icon[data-size="12"] {
+  --icon-size: 12px;
+}
+.icon[data-size="14"] {
+  --icon-size: 14px;
+}
+.icon[data-size="16"] {
+  --icon-size: 16px;
+}
+.icon[data-size="18"] {
+  --icon-size: 18px;
+}
+.icon[data-size="20"] {
+  --icon-size: 20px;
+}
+.icon[data-size="24"] {
+  --icon-size: 24px;
+}
+.icon[data-size="32"] {
+  --icon-size: 32px;
+}
+.icon[data-size="40"] {
+  --icon-size: 40px;
+}
+
+.icon[data-icon="home"] {
+  mask-image: url("/icons/home.svg");
+  -webkit-mask-image: url("/icons/home.svg");
+}
+.icon[data-icon="analytics"] {
+  mask-image: url("/icons/analytics.svg");
+  -webkit-mask-image: url("/icons/analytics.svg");
+}
+.icon[data-icon="inbox"] {
+  mask-image: url("/icons/inbox.svg");
+  -webkit-mask-image: url("/icons/inbox.svg");
+}
+.icon[data-icon="employees"] {
+  mask-image: url("/icons/employees.svg");
+  -webkit-mask-image: url("/icons/employees.svg");
+}
+.icon[data-icon="face-content"] {
+  mask-image: url("/icons/face-content.svg");
+  -webkit-mask-image: url("/icons/face-content.svg");
+}
+.icon[data-icon="integrations"] {
+  mask-image: url("/icons/integrations.svg");
+  -webkit-mask-image: url("/icons/integrations.svg");
+}
+.icon[data-icon="receipt-check"] {
+  mask-image: url("/icons/receipt-check.svg");
+  -webkit-mask-image: url("/icons/receipt-check.svg");
+}
+.icon[data-icon="help-circle"] {
+  mask-image: url("/icons/help-circle.svg");
+  -webkit-mask-image: url("/icons/help-circle.svg");
+}
+.icon[data-icon="settings-04"] {
+  mask-image: url("/icons/settings-04.svg");
+  -webkit-mask-image: url("/icons/settings-04.svg");
+}
+.icon[data-icon="sparkles"] {
+  mask-image: url("/icons/sparkles.svg");
+  -webkit-mask-image: url("/icons/sparkles.svg");
+}
+.icon[data-icon="clipboard"] {
+  mask-image: url("/icons/clipboard.svg");
+  -webkit-mask-image: url("/icons/clipboard.svg");
+}
+.icon[data-icon="bar-chart"] {
+  mask-image: url("/icons/bar-chart.svg");
+  -webkit-mask-image: url("/icons/bar-chart.svg");
+}
+.icon[data-icon="grid"] {
+  mask-image: url("/icons/grid.svg");
+  -webkit-mask-image: url("/icons/grid.svg");
+}
+.icon[data-icon="chevron-down"] {
+  mask-image: url("/icons/chevron-down.svg");
+  -webkit-mask-image: url("/icons/chevron-down.svg");
+}
+.icon[data-icon="chevron-up"] {
+  mask-image: url("/icons/chevron-up.svg");
+  -webkit-mask-image: url("/icons/chevron-up.svg");
+}
+.icon[data-icon="dot"] {
+  mask-image: url("/icons/dot.svg");
+  -webkit-mask-image: url("/icons/dot.svg");
+}
+.icon[data-icon="hourglass"] {
+  mask-image: url("/icons/hourglass.svg");
+  -webkit-mask-image: url("/icons/hourglass.svg");
+}
+.icon[data-icon="sun"] {
+  mask-image: url("/icons/sun.svg");
+  -webkit-mask-image: url("/icons/sun.svg");
+}
+.icon[data-icon="leaf"] {
+  mask-image: url("/icons/leaf.svg");
+  -webkit-mask-image: url("/icons/leaf.svg");
+}
+.icon[data-icon="slash-octagon"] {
+  mask-image: url("/icons/slash-octagon.svg");
+  -webkit-mask-image: url("/icons/slash-octagon.svg");
+}
+.icon[data-icon="invite"] {
+  mask-image: url("/icons/invite.svg");
+  -webkit-mask-image: url("/icons/invite.svg");
+}
+.icon[data-icon="report"] {
+  mask-image: url("/icons/report.svg");
+  -webkit-mask-image: url("/icons/report.svg");
+}
+.icon[data-icon="search"] {
+  mask-image: url("/icons/search.svg");
+  -webkit-mask-image: url("/icons/search.svg");
+}
+.icon[data-icon="menu"] {
+  mask-image: url("/icons/menu.svg");
+  -webkit-mask-image: url("/icons/menu.svg");
+}
+.icon[data-icon="close"] {
+  mask-image: url("/icons/close.svg");
+  -webkit-mask-image: url("/icons/close.svg");
+}
+.icon[data-icon="arrow-right"] {
+  mask-image: url("/icons/arrow-right.svg");
+  -webkit-mask-image: url("/icons/arrow-right.svg");
+}
+.icon[data-icon="arrow-up-right"] {
+  mask-image: url("/icons/arrow-up-right.svg");
+  -webkit-mask-image: url("/icons/arrow-up-right.svg");
+}
+.icon[data-icon="arrow-down-right"] {
+  mask-image: url("/icons/arrow-down-right.svg");
+  -webkit-mask-image: url("/icons/arrow-down-right.svg");
+}

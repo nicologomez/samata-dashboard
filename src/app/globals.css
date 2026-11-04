@@ -34,7 +34,6 @@ body {
 body {
   background: var(--bg-primary-brand);
   color: var(--text-primary);
-  font-family: var(--font-poppins), Arial, sans-serif;
 }
 button,
 input,

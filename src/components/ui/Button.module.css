@@ -6,7 +6,6 @@
   gap: var(--space-sm);
   border: var(--stroke-sm) solid transparent;
   border-radius: var(--radius-full);
-  font-weight: 500;
   white-space: nowrap;
   transition:
     background-color 120ms,
@@ -57,27 +56,22 @@
 .xs {
   min-height: 28px;
   padding: 4px 8px;
-  font-size: 12px;
 }
 .sm {
   min-height: 32px;
   padding: 6px 10px;
-  font-size: 12px;
 }
 .md {
   min-height: 36px;
   padding: 8px 12px;
-  font-size: 14px;
 }
 .lg {
   min-height: 40px;
   padding: 10px 16px;
-  font-size: 14px;
 }
 .xl {
   min-height: 44px;
   padding: 12px 20px;
-  font-size: 16px;
 }
 .button:focus-visible {
   outline: var(--stroke-xl) solid var(--border-focus);

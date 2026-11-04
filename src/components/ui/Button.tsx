@@ -12,10 +12,16 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
+  const typeClass =
+    size === "xl"
+      ? "type-label-medium-large"
+      : size === "xs" || size === "sm"
+        ? "type-label-medium-small"
+        : "type-label-medium-medium";
   return (
     <button
       {...props}
-      className={`${styles.button} ${styles[variant]} ${styles[size]} ${className}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size]} ${typeClass} ${className}`}
     />
   );
 }

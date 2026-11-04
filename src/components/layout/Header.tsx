@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import { employerNav } from "@/config/navigation";
 import type { EmployerProfile } from "@/types/dashboard";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import { Avatar } from "@/components/ui/Avatar";
 import { AddEmployeeDialog } from "@/features/employees/AddEmployeeDialog";
 import styles from "./Header.module.css";
-
 
 export function Header({
   profile,
@@ -34,9 +34,9 @@ export function Header({
             aria-label="Open navigation"
             onClick={onOpenMenu}
           >
-            ☰
+            <Icon name="menu" size={20} />
           </button>
-          <h1>{pageTitle}</h1>
+          <h1 className="type-heading-h5">{pageTitle}</h1>
         </div>
         <div className={styles.actions}>
           <Button onClick={() => setInviteOpen(true)}>Add Employees</Button>
@@ -46,7 +46,7 @@ export function Header({
             aria-expanded={searchOpen}
             aria-controls="employer-search"
           >
-            ⌕ Search
+            <Icon name="search" size={20} /> Search
           </Button>
           <div className={styles.profile}>
             <button
@@ -56,15 +56,21 @@ export function Header({
             >
               <Avatar name={profile.user} />
               <span>
-                <strong>{profile.user}</strong>
-                <small>{profile.role}</small>
+                <strong className="type-heading-h7">{profile.user}</strong>
+                <small className="type-label-medium-medium">
+                  {profile.role}
+                </small>
               </span>
-              <span aria-hidden="true">⌄</span>
+              <Icon name="chevron-down" size={16} className={styles.chevron} />
             </button>
             {profileOpen && (
               <div className={styles.popup}>
-                <p>Employer demo profile</p>
-                <button type="button" onClick={() => setProfileOpen(false)}>
+                <p className="type-paragraph-small">Employer demo profile</p>
+                <button
+                  className="type-label-medium-small"
+                  type="button"
+                  onClick={() => setProfileOpen(false)}
+                >
                   Close menu
                 </button>
               </div>
@@ -74,14 +80,17 @@ export function Header({
       </header>
       {searchOpen && (
         <div id="employer-search" className={styles.search}>
-          <label htmlFor="dashboard-search">Search dashboard (demo)</label>
+          <label className="type-label-medium-small" htmlFor="dashboard-search">
+            Search dashboard (demo)
+          </label>
           <input
             id="dashboard-search"
+            className="type-paragraph-small"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Try adoption or sessions"
           />
-          <p role="status">
+          <p className="type-paragraph-xsmall" role="status">
             {query
               ? `Demo search term: ${query}`
               : "Search is local to this demo."}

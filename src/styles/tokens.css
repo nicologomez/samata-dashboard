@@ -262,13 +262,13 @@
   --card-border: var(--border-subtle);
   --card-title: var(--text-primary);
   --card-body: var(--text-secondary);
-  --font-family-display: Poppins;
-  --font-family-display-alt: Besley;
-  --font-family-headings: Poppins;
-  --font-family-headings-alt: Besley;
-  --font-family-paragraphs: Poppins;
-  --font-family-labels: Poppins;
-  --font-family-overline: Poppins;
+  --font-family-display: var(--font-poppins), Arial, sans-serif;
+  --font-family-display-alt: var(--font-besley), Georgia, serif;
+  --font-family-headings: var(--font-poppins), Arial, sans-serif;
+  --font-family-headings-alt: var(--font-besley), Georgia, serif;
+  --font-family-paragraphs: var(--font-poppins), Arial, sans-serif;
+  --font-family-labels: var(--font-poppins), Arial, sans-serif;
+  --font-family-overline: var(--font-poppins), Arial, sans-serif;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -423,13 +423,13 @@
 
 @media (max-width: 600px) {
   :root {
-    --font-family-display: Poppins;
-    --font-family-display-alt: Besley;
-    --font-family-headings: Poppins;
-    --font-family-headings-alt: Besley;
-    --font-family-paragraphs: Poppins;
-    --font-family-labels: Poppins;
-    --font-family-overline: Poppins;
+    --font-family-display: var(--font-poppins), Arial, sans-serif;
+    --font-family-display-alt: var(--font-besley), Georgia, serif;
+    --font-family-headings: var(--font-poppins), Arial, sans-serif;
+    --font-family-headings-alt: var(--font-besley), Georgia, serif;
+    --font-family-paragraphs: var(--font-poppins), Arial, sans-serif;
+    --font-family-labels: var(--font-poppins), Arial, sans-serif;
+    --font-family-overline: var(--font-poppins), Arial, sans-serif;
     --font-weight-light: 300;
     --font-weight-regular: 400;
     --font-weight-medium: 500;

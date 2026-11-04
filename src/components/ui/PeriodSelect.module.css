@@ -1,15 +1,43 @@
+.field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .field select {
+  appearance: none;
   border: 0;
-  padding: 0;
+  padding: 0 calc(16px + var(--space-sm)) 0 0;
   background: transparent;
   color: var(--text-secondary);
-  font-size: 12px;
   cursor: pointer;
 }
+
+.chevron {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--icon-secondary);
+}
+
+.chevronUp {
+  display: none;
+}
+
+.field select:open ~ .chevronDown {
+  display: none;
+}
+
+.field select:open ~ .chevronUp {
+  display: block;
+}
+
 .visuallyHidden {
   position: absolute;
-  width: 0;
-  height: 0;
+  width: 1px;
+  height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;

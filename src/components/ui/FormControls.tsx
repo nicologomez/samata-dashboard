@@ -10,15 +10,15 @@ export function TextField({ label, id, ...inputProps }: InputProps) {
   if (!id)
     throw new Error("TextField requires a stable id for label association.");
   return (
-    <label className={styles.stack} htmlFor={id}>
+    <label className={`${styles.stack} type-label-medium-small`} htmlFor={id}>
       {label}
-      <input id={id} {...inputProps} />
+      <input id={id} className="type-paragraph-small" {...inputProps} />
     </label>
   );
 }
 export function CheckboxField({ label, ...props }: InputProps) {
   return (
-    <label className={styles.choice}>
+    <label className={`${styles.choice} type-label-medium-small`}>
       <input type="checkbox" {...props} />
       {label}
     </label>
@@ -26,7 +26,7 @@ export function CheckboxField({ label, ...props }: InputProps) {
 }
 export function RadioField({ label, ...props }: InputProps) {
   return (
-    <label className={styles.choice}>
+    <label className={`${styles.choice} type-label-medium-small`}>
       <input type="radio" {...props} />
       {label}
     </label>
@@ -42,7 +42,7 @@ export function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className={styles.choice}>
+    <label className={`${styles.choice} type-label-medium-small`}>
       <input
         type="checkbox"
         role="switch"
@@ -62,9 +62,9 @@ export function SelectField({ label, children, id, ...props }: SelectProps) {
   if (!id)
     throw new Error("SelectField requires a stable id for label association.");
   return (
-    <label className={styles.stack} htmlFor={id}>
+    <label className={`${styles.stack} type-label-medium-small`} htmlFor={id}>
       {label}
-      <select id={id} {...props}>
+      <select id={id} className="type-paragraph-small" {...props}>
         {children}
       </select>
     </label>

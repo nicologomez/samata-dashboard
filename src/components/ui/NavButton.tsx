@@ -12,7 +12,7 @@ export function NavButton({ href, children, onNavigate }: Props) {
       href={href}
       onClick={onNavigate}
       aria-current={selected ? "page" : undefined}
-      className={`${styles.link} ${selected ? styles.active : ""}`}
+      className={`${styles.link} type-label-medium-medium ${selected ? styles.active : ""}`}
     >
       {children}
     </Link>

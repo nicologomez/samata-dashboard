@@ -7,9 +7,6 @@
   background: var(--bg-primary-brand);
 }
 .panel h3 {
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 500;
   padding-bottom: var(--space-xl);
   border-bottom: var(--stroke-sm) solid var(--border-default);
 }
@@ -23,15 +20,10 @@
   grid-template-columns: 30px 36px minmax(0, 1fr);
   gap: var(--space-xl);
   align-items: center;
-  font-size: 12px;
   color: var(--text-secondary);
 }
 .statuses strong {
-  font-family: var(--font-besley), serif;
-  font-style: italic;
-  font-size: 17px;
   color: var(--text-brand-dark);
-  font-weight: 400;
 }
 .statusIcon {
   display: grid;
@@ -42,12 +34,27 @@
   background: var(--bg-accent-blue-subtle);
   color: var(--icon-accent-blue);
 }
+.statusIcon[data-status="Pending Access"] {
+  background: var(--bg-warning);
+  color: var(--icon-warning);
+}
+.statusIcon[data-status="Active Benefits"] {
+  background: var(--bg-success);
+  color: var(--icon-success);
+}
+.statusIcon[data-status="Grace Period"] {
+  background: var(--bg-accent-orange-subtle);
+  color: var(--icon-accent-orange);
+}
+.statusIcon[data-status="Deactivated"] {
+  background: var(--bg-disabled);
+  color: var(--icon-disabled);
+}
 .setup {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--space-sm);
-  font-size: 11px;
   color: var(--text-secondary);
 }
 .rates {
@@ -62,12 +69,6 @@
   display: grid;
   gap: var(--space-xxs);
 }
-.rates strong {
-  font-family: var(--font-besley), serif;
-  font-weight: 400;
-  font-size: 18px;
-}
 .rates small {
-  font-size: 11px;
   color: var(--text-secondary);
 }

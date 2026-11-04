@@ -8,6 +8,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
+
 const besley = Besley({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -24,10 +25,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} ${besley.variable}`}>
-        {children}
-      </body>
+    <html lang="en" className={`${poppins.variable} ${besley.variable}`}>
+      <body className="type-paragraph-small">{children}</body>
     </html>
   );
 }

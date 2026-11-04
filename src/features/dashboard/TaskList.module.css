@@ -4,11 +4,6 @@
   align-content: start;
   gap: var(--space-lg);
 }
-.list h2 {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-}
 .cards {
   display: grid;
   gap: var(--space-lg);
@@ -24,8 +19,6 @@
 .age {
   display: block;
   padding: var(--space-xs) var(--space-xl) 0;
-  font-size: 10px;
-  line-height: 14px;
   background: var(--color-orange-100);
   color: var(--text-secondary);
 }
@@ -41,15 +34,7 @@
   display: grid;
   gap: var(--space-xs);
 }
-.description h3 {
-  font-family: var(--font-besley), serif;
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 400;
-}
 .description p {
-  font-size: 12px;
-  line-height: 16px;
   color: var(--text-secondary);
 }
 .dismiss {
@@ -58,7 +43,6 @@
   top: var(--space-xs);
   border: 0;
   background: transparent;
-  font-size: 18px;
   color: var(--text-secondary);
   cursor: pointer;
 }
@@ -74,10 +58,21 @@
   border: var(--stroke-sm) solid var(--border-brand);
   border-radius: var(--radius-full);
   padding: var(--space-sm) var(--space-lg);
-  font-size: 12px;
   text-decoration: none;
   color: var(--text-brand-dark);
 }
 .actions a:hover {
   background: var(--bg-brand-subtle);
+}
+.list h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.headingIcon {
+  color: var(--icon-tertiary);
+}
+.dismiss {
+  display: inline-grid;
+  place-items: center;
 }

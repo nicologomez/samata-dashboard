@@ -12,7 +12,7 @@ export function Badge({
   return (
     <span
       {...props}
-      className={`${styles.badge} ${styles[tone]} ${className}`}
+      className={`${styles.badge} ${styles[tone]} type-label-medium-small ${className}`}
     />
   );
 }

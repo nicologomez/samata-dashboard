@@ -8,6 +8,7 @@
   overflow-y: auto;
   background: var(--bg-primary-brand);
   padding: 24px 16px 16px;
+  border-right: 1px solid var(--border-subtle);
 }
 .brand {
   display: flex;
@@ -17,13 +18,6 @@
   padding: 0 8px 16px;
   border-bottom: 1px solid var(--border-default);
   white-space: nowrap;
-}
-.brand strong {
-  font-size: 20px;
-  font-weight: 600;
-}
-.brand span {
-  font-size: 24px;
 }
 .close {
   display: none;
@@ -35,8 +29,6 @@
 }
 .groupLabel,
 .links h2 {
-  font-size: 11px;
-  font-weight: 600;
   color: var(--text-secondary);
   margin: 0 8px;
 }
@@ -64,18 +56,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.switcher strong {
-  font-size: 13px;
-}
 .switcher small {
-  font-size: 12px;
   color: var(--text-secondary);
 }
 .companyMark {
   border-radius: 6px;
   background: var(--color-gray-950);
   color: white;
-  font-weight: 700;
   padding: 6px;
 }
 .orgPanel {
@@ -86,7 +73,6 @@
   border-radius: 8px;
   padding: 12px;
   box-shadow: var(--effect-shadows-shadow-xs);
-  font-size: 12px;
 }
 .orgPanel p {
   color: var(--text-secondary);
@@ -101,9 +87,10 @@
 .inbox a {
   text-decoration: none;
   border-radius: 6px;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
   padding: 9px 12px;
-  font-size: 13px;
   color: var(--text-secondary);
 }
 .links a:hover,
@@ -127,20 +114,14 @@
   border-radius: 8px;
   padding: 16px;
   color: var(--text-secondary);
-  font-size: 12px;
 }
 .usage strong {
   color: var(--text-primary);
-  font-family: var(--font-besley), serif;
-  font-size: 24px;
-  font-weight: 400;
 }
 .usage a {
   text-decoration: none;
   color: var(--text-brand-dark);
-  font-size: 12px;
 }
-
 @media (max-width: 900px) {
   .sidebar {
     display: none;
@@ -159,6 +140,20 @@
     display: block;
     border: 0;
     background: none;
-    font-size: 24px;
   }
+}
+.navIcon {
+  color: var(--icon-secondary);
+}
+.active .navIcon {
+  color: var(--icon-brand);
+}
+
+.chevron {
+  color: var(--icon-tertiary);
+}
+.usage a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
 }

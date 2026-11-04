@@ -28,6 +28,7 @@ export function HorizontalTabs({
     <div role="tablist" className={styles.tabs} aria-label="Section tabs">
       {tabs.map((tab, index) => (
         <button
+          className="type-label-medium-medium"
           key={tab.id}
           role="tab"
           type="button"

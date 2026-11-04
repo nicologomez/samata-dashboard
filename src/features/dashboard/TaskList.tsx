@@ -5,6 +5,7 @@ import type { DashboardTask } from "@/types/dashboard";
 import type { AsyncState } from "@/types/asyncState";
 import { runDemoTask } from "@/services/taskService";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import styles from "./TaskList.module.css";
 
 export function TaskList({ tasks }: { tasks: readonly DashboardTask[] }) {
@@ -27,13 +28,20 @@ export function TaskList({ tasks }: { tasks: readonly DashboardTask[] }) {
 
   return (
     <section aria-labelledby="task-title" className={styles.list}>
-      <h2 id="task-title">▣ Things to do</h2>
-      {visible.length === 0 && <p>All demo tasks dismissed.</p>}
+      <h2 id="task-title" className="type-label-medium-medium">
+        <Icon name="clipboard" size={14} className={styles.headingIcon} />{" "}
+        Things to do
+      </h2>
+      {visible.length === 0 && (
+        <p className="type-paragraph-small">All demo tasks dismissed.</p>
+      )}
       {visible.length > 0 && (
         <div className={styles.cards}>
           {visible.map((task) => (
             <article className={styles.task} key={task.id}>
-              <small className={styles.age}>{task.age}</small>
+              <small className={`${styles.age} type-label-medium-xsmall`}>
+                {task.age}
+              </small>
               <div className={styles.body}>
                 <button
                   type="button"
@@ -41,15 +49,17 @@ export function TaskList({ tasks }: { tasks: readonly DashboardTask[] }) {
                   onClick={() => setHiddenIds((ids) => [...ids, task.id])}
                   aria-label={`Dismiss ${task.title}`}
                 >
-                  ×
+                  <Icon name="close" size={14} />
                 </button>
                 <div className={styles.content}>
                   <div className={styles.description}>
-                    <h3>{task.title}</h3>
-                    <p>{task.detail}</p>
+                    <h3 className="type-heading-alt-medium-h7">{task.title}</h3>
+                    <p className="type-paragraph-xsmall">{task.detail}</p>
                   </div>
                   <div className={styles.actions}>
-                    <Link href={task.href}>View</Link>
+                    <Link className="type-label-medium-small" href={task.href}>
+                      View
+                    </Link>
                     <Button
                       size="xs"
                       disabled={result.status === "loading"}
@@ -65,10 +75,14 @@ export function TaskList({ tasks }: { tasks: readonly DashboardTask[] }) {
         </div>
       )}
       {result.status === "loading" && (
-        <p role="status">Preparing demo action…</p>
+        <p role="status" className="type-paragraph-xsmall">
+          Preparing demo action…
+        </p>
       )}
       {(result.status === "success" || result.status === "error") && (
-        <p role="status">{result.message}</p>
+        <p role="status" className="type-paragraph-xsmall">
+          {result.message}
+        </p>
       )}
     </section>
   );

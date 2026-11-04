@@ -19,9 +19,6 @@
 }
 .title h1 {
   margin: 0;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
   color: var(--text-brand-dark);
 }
 .actions {
@@ -42,7 +39,6 @@
   background: none;
   border: 0;
   text-align: left;
-  font-size: 13px;
   color: var(--text-primary);
 }
 .profile strong,
@@ -74,7 +70,6 @@
 .search label {
   display: block;
   margin-bottom: 4px;
-  font-size: 12px;
 }
 .search input {
   width: min(100%, 460px);
@@ -84,13 +79,11 @@
 }
 .search p {
   margin: 6px 0 0;
-  font-size: 12px;
 }
 .mobileMenu {
   display: none;
   border: 0;
   background: none;
-  font-size: 22px;
 }
 @media (max-width: 900px) {
   .mobileMenu {
@@ -100,7 +93,7 @@
     display: none;
   }
 }
-
+/* This line locates the current route title from navigation data. */
 @media (max-width: 600px) {
   .header {
     padding: 12px 16px;
@@ -114,4 +107,7 @@
     justify-content: flex-start;
     flex-wrap: wrap;
   }
+}
+.chevron {
+  color: var(--icon-tertiary);
 }

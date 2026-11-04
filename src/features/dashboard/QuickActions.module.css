@@ -5,9 +5,12 @@
   gap: var(--space-lg);
 }
 .quick h2 {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.headingIcon {
+  color: var(--icon-tertiary);
 }
 .tiles {
   display: grid;
@@ -35,21 +38,15 @@
   gap: var(--space-xxs);
   min-width: 0;
 }
-.tile strong {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-}
 .tile small {
   color: var(--text-secondary);
-  font-size: 12px;
-  line-height: 16px;
 }
-.icon {
+.iconTile {
   display: grid;
   place-items: center;
   width: 50px;
   height: 50px;
-  font-size: 25px;
-  color: var(--icon-accent-blue);
+}
+.actionIcon {
+  color: var(--icon-brand);
 }

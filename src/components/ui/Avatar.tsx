@@ -8,7 +8,11 @@ export function Avatar({ name }: { name: string }) {
     .map((word) => word[0]?.toUpperCase())
     .join("");
   return (
-    <span className={styles.avatar} aria-label={name} title={name}>
+    <span
+      className={`${styles.avatar} type-label-medium-large`}
+      aria-label={name}
+      title={name}
+    >
       {initials}
     </span>
   );

@@ -1,33 +1,56 @@
-import Image from "next/image";
+import styles from "./Icon.module.css";
 
-const iconPaths = {
-  home: "/icons/home.svg",
-  analytics: "/icons/analytics.svg",
-  inbox: "/icons/inbox.svg",
-  employees: "/icons/employees.svg",
-  integrations: "/icons/integrations.svg",
-  billing: "/icons/billing.svg",
-  support: "/icons/support.svg",
-  settings: "/icons/settings.svg",
-} as const;
+export const iconNames = [
+  "home",
+  "analytics",
+  "inbox",
+  "employees",
+  "face-content",
+  "integrations",
+  "receipt-check",
+  "help-circle",
+  "settings",
+  "settings-04",
+  "sparkles",
+  "clipboard",
+  "bar-chart",
+  "grid",
+  "chevron-down",
+  "chevron-up",
+  "dot",
+  "hourglass",
+  "sun",
+  "leaf",
+  "slash-octagon",
+  "invite",
+  "report",
+  "search",
+  "menu",
+  "close",
+  "arrow-right",
+  "arrow-down-right",
+  "arrow-up-right",
+] as const;
 
-type IconName = keyof typeof iconPaths;
-export function Icon({
-  name,
-  label = "",
-  size = 20,
-}: {
+export type IconName = (typeof iconNames)[number];
+export type IconSize = 8 | 12 | 14 | 16 | 18 | 20 | 24 | 32 | 40;
+
+type Props = {
   name: IconName;
+  size?: IconSize;
+  className?: string;
   label?: string;
-  size?: number;
-}) {
+};
+
+export function Icon({ name, size = 24, className = "", label }: Props) {
   return (
-    <Image
-      src={iconPaths[name]}
-      alt={label}
-      width={size}
-      height={size}
-      unoptimized
+    <span
+      className={`${styles.icon} ${className}`}
+      data-icon={name}
+      data-size={size}
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
     />
   );
 }
