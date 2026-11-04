@@ -1,5 +1,4 @@
 import type { DashboardData } from "@/types/dashboard";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import styles from "./CareAccess.module.css";
@@ -13,7 +12,7 @@ const careIcons = {
 
 export function CareAccess({ data }: { data: DashboardData }) {
   return (
-    <Card className={styles.panel}>
+    <section className={styles.panel}>
       <h3 className="type-heading-h7">Care Access</h3>
       <ul className={styles.statuses}>
         {data.care.map((item) => (
@@ -49,6 +48,6 @@ export function CareAccess({ data }: { data: DashboardData }) {
           <small className="type-paragraph-xsmall">Onboard Rate</small>
         </div>
       </div>
-    </Card>
+    </section>
   );
 }

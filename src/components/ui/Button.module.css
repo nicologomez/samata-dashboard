@@ -1,85 +1,362 @@
 .button {
-  --button-padding-x: var(--space-xl);
+  --button-background: transparent;
+  --button-foreground: var(--text-primary);
+  --button-border: transparent;
+  --button-border-width: 0px;
+  --button-outside-color: transparent;
+  --button-shadow: none;
+
+  position: relative;
   display: inline-flex;
-  justify-content: center;
+  box-sizing: border-box;
   align-items: center;
-  gap: var(--space-sm);
-  border: var(--stroke-sm) solid transparent;
+  justify-content: center;
+  flex: none;
+
+  width: max-content;
+  max-width: 100%;
+  gap: var(--space-xxs);
+
+  border: var(--button-border-width) solid var(--button-border);
+  outline: var(--outside-width, 0px) solid var(--button-outside-color);
+  outline-offset: 0;
   border-radius: var(--radius-full);
+
+  background: var(--button-background);
+  color: var(--button-foreground);
+  box-shadow: var(--button-shadow);
+
+  cursor: pointer;
   white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+
   transition:
-    background-color 120ms,
-    border-color 120ms;
+    background 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
 }
-.primary {
-  background: var(--button-primary-bg);
-  color: var(--button-primary-text);
+
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xxs);
+  padding: 0 var(--space-xxs);
+  text-align: center;
+  white-space: nowrap;
 }
-.primary:hover {
-  background: var(--button-primary-bg-hover);
+
+.icon {
+  display: block;
+  flex: none;
+  color: inherit;
 }
-.primary:active {
-  background: var(--button-primary-bg-pressed);
-}
-.secondary {
-  background: var(--button-secondary-bg);
-  color: var(--button-secondary-text);
-  border-color: var(--button-secondary-border);
-}
-.secondary:hover {
-  background: var(--button-secondary-bg-hover);
-}
-.secondary:active {
-  background: var(--button-secondary-bg-pressed);
-}
-.outline {
-  background: transparent;
-  color: var(--text-brand-dark);
-  border-color: var(--border-brand);
-}
-.outline:hover {
-  background: var(--bg-brand-subtle);
-}
-.outline:active {
-  background: var(--bg-tertiary);
-}
-.ghost {
-  background: transparent;
-  color: var(--text-secondary);
-}
-.ghost:hover {
-  background: var(--bg-tertiary);
-}
-.ghost:active {
-  background: var(--bg-brand-subtle);
-}
+
+/* Size: xs */
+
 .xs {
-  min-height: 28px;
-  padding: 4px 8px;
+  height: 28px;
+  padding: var(--space-sm) var(--space-lg);
+  --outside-width: 2px;
 }
+
+/* Size: sm */
+
 .sm {
-  min-height: 32px;
-  padding: 6px 10px;
+  height: 36px;
+  padding: var(--space-md) var(--space-xl);
+  --outside-width: 3px;
 }
+
+.sm .text {
+  padding: var(--space-xxs);
+}
+
+/* Size: md */
+
 .md {
-  min-height: 36px;
-  padding: 8px 12px;
+  height: 40px;
+  padding: var(--space-lg) var(--space-2xl);
+  --outside-width: 4px;
 }
+
+/* Size: lg */
+
 .lg {
-  min-height: 40px;
-  padding: 10px 16px;
+  height: 44px;
+  padding: var(--space-xl) var(--space-2xl);
+  --outside-width: 4px;
 }
+
+/* Size: xl */
+
 .xl {
-  min-height: 44px;
-  padding: 12px 20px;
+  height: 50px;
+  padding: var(--space-xl) var(--space-4xl);
+  --outside-width: 4px;
 }
-.button:focus-visible {
-  outline: var(--stroke-xl) solid var(--border-focus);
-  outline-offset: 2px;
+
+/* Type: Primary */
+
+.button[data-appearance="primary"] {
+  --button-background: linear-gradient(
+    90deg,
+    var(--color-aqua-700) 0%,
+    var(--color-aqua-500) 50%,
+    var(--color-aqua-600) 100%
+  );
+
+  --button-foreground: var(--text-on-brand);
+  --button-outside-color: rgba(255, 255, 255, 0.4);
+  --button-shadow: var(--effect-temp-inner);
 }
+
+.button[data-appearance="primary"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-background: linear-gradient(
+    90deg,
+    var(--color-aqua-700) 0%,
+    var(--color-aqua-600) 50%,
+    var(--color-aqua-700) 100%
+  );
+}
+
+.button[data-appearance="primary"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-background: linear-gradient(
+    90deg,
+    var(--color-aqua-800) 0%,
+    var(--color-aqua-700) 50%,
+    var(--color-aqua-700) 100%
+  );
+}
+
+/* Type: Secondary */
+
+.button[data-appearance="secondary"] {
+  --outside-width: 0px;
+  --button-border-width: var(--stroke-l);
+  --button-border: var(--color-aqua-500);
+  --button-foreground: var(--text-brand-dark);
+}
+
+.button[data-appearance="secondary"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-background: var(--color-gray-100);
+  --button-border: var(--color-aqua-600);
+}
+
+.button[data-appearance="secondary"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-background: var(--color-gray-200);
+  --button-border: var(--color-aqua-700);
+}
+
+/* Type: White */
+
+.button[data-appearance="white"] {
+  --button-background: var(--color-gray-0);
+  --button-foreground: var(--text-primary);
+  --button-outside-color: rgba(255, 255, 255, 0.4);
+  --button-shadow: var(--effect-temp-inner);
+}
+
+.button[data-appearance="white"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-background: var(--color-gray-100);
+}
+
+.button[data-appearance="white"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-background: var(--color-gray-200);
+}
+
+/* Type: Action */
+
+.button[data-appearance="action"] {
+  --outside-width: 0px;
+  --button-background: var(--color-gray-0);
+  --button-foreground: var(--text-secondary);
+  --button-border-width: var(--stroke-l);
+  --button-border: var(--border-default);
+
+  justify-content: flex-start;
+}
+
+.button[data-appearance="action"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-foreground: var(--text-brand-dark);
+}
+
+.button[data-appearance="action"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-border: var(--color-aqua-500);
+  --button-foreground: var(--text-primary);
+}
+
+/* Action: Figma fixed widths */
+
+.button[data-appearance="action"].xs {
+  width: 100px;
+}
+
+.button[data-appearance="action"].sm {
+  width: 118px;
+}
+
+.button[data-appearance="action"].md {
+  width: 133px;
+}
+
+.button[data-appearance="action"].lg {
+  width: 133px;
+}
+
+.button[data-appearance="action"].xl {
+  width: 157px;
+}
+
+/* Type: Pills */
+
+.button[data-appearance="pills"] {
+  --outside-width: 0px;
+  --button-border-width: var(--stroke-l);
+  --button-border: var(--border-default);
+  --button-foreground: var(--text-secondary);
+}
+
+.button[data-appearance="pills"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-background: var(--color-gray-100);
+  --button-border: var(--color-aqua-300);
+  --button-foreground: var(--color-gray-800);
+}
+
+.button[data-appearance="pills"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-background: var(--color-gray-200);
+  --button-border: var(--color-aqua-500);
+  --button-foreground: var(--text-brand-dark);
+}
+
+/* Type: Basic */
+
+.button[data-appearance="basic"] {
+  --outside-width: 0px;
+  --button-background: var(--color-aqua-100);
+  --button-foreground: var(--text-primary);
+}
+
+.button[data-appearance="basic"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-background: var(--color-aqua-200);
+}
+
+.button[data-appearance="basic"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-background: var(--color-aqua-300);
+}
+
+/* State: Transparent, Basic only */
+
+.button[data-appearance="basic"][data-state="transparent"] {
+  --button-background: transparent;
+  --button-foreground: var(--text-secondary);
+}
+
+/* State: Focus */
+
+.button:focus-visible,
+.button[data-state="focus"]:not(:disabled) {
+  --button-shadow: var(--effect-shadow-focus);
+}
+
+.button[data-appearance="primary"]:is(:focus-visible, [data-state="focus"]),
+.button[data-appearance="white"]:is(:focus-visible, [data-state="focus"]) {
+  --button-outside-color: var(--color-aqua-200);
+}
+
+.button[data-appearance="basic"]:is(:focus-visible, [data-state="focus"]) {
+  --outside-width: 4px;
+  --button-outside-color: var(--color-aqua-50);
+}
+
+.button[data-appearance="secondary"]:is(:focus-visible, [data-state="focus"]),
+.button[data-appearance="pills"]:is(:focus-visible, [data-state="focus"]),
+.button[data-appearance="action"]:is(:focus-visible, [data-state="focus"]) {
+  --button-border: var(--color-aqua-500);
+}
+
+/* State: Disabled */
+
 .button:disabled {
-  color: var(--button-disabled-text);
-  background: var(--button-disabled-bg);
-  border-color: transparent;
+  --button-background: var(--color-gray-100);
+  --button-foreground: var(--color-gray-300);
+
   cursor: not-allowed;
+  transition: none;
+}
+
+.button[data-appearance="secondary"]:disabled,
+.button[data-appearance="pills"]:disabled {
+  --button-background: transparent;
+  --button-border: var(--color-gray-100);
+}
+
+.button[data-appearance="action"]:disabled {
+  --button-border: var(--border-default);
+}
+
+/* Variant: Icon only */
+
+.button[data-mode="icon"] {
+  justify-content: center;
+  padding: 0;
+  aspect-ratio: 1;
+}
+
+.button[data-mode="icon"].xs {
+  width: 28px;
+}
+
+.button[data-mode="icon"].sm {
+  width: 36px;
+}
+
+.button[data-mode="icon"].md {
+  width: 40px;
+}
+
+.button[data-mode="icon"].lg {
+  width: 44px;
+}
+
+.button[data-mode="icon"].xl {
+  width: 48px;
 }

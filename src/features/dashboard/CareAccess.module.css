@@ -1,20 +1,27 @@
 .panel {
+  min-width: 0;
   height: 100%;
   display: grid;
   align-content: start;
   gap: var(--space-2xl);
   padding: var(--space-3xl) var(--space-4xl) var(--space-4xl);
   background: var(--bg-primary-brand);
+  border: var(--stroke-sm) solid var(--border-default);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--effect-shadows-shadow-xs);
 }
+
 .panel h3 {
   padding-bottom: var(--space-xl);
   border-bottom: var(--stroke-sm) solid var(--border-default);
 }
+
 .statuses {
   list-style: none;
   display: grid;
   gap: var(--space-2xl);
 }
+
 .statuses li {
   display: grid;
   grid-template-columns: 30px 36px minmax(0, 1fr);
@@ -22,9 +29,11 @@
   align-items: center;
   color: var(--text-secondary);
 }
+
 .statuses strong {
   color: var(--text-brand-dark);
 }
+
 .statusIcon {
   display: grid;
   place-items: center;
@@ -34,22 +43,27 @@
   background: var(--bg-accent-blue-subtle);
   color: var(--icon-accent-blue);
 }
+
 .statusIcon[data-status="Pending Access"] {
   background: var(--bg-warning);
   color: var(--icon-warning);
 }
+
 .statusIcon[data-status="Active Benefits"] {
   background: var(--bg-success);
   color: var(--icon-success);
 }
+
 .statusIcon[data-status="Grace Period"] {
   background: var(--bg-accent-orange-subtle);
   color: var(--icon-accent-orange);
 }
+
 .statusIcon[data-status="Deactivated"] {
   background: var(--bg-disabled);
   color: var(--icon-disabled);
 }
+
 .setup {
   display: flex;
   justify-content: space-between;
@@ -57,6 +71,7 @@
   gap: var(--space-sm);
   color: var(--text-secondary);
 }
+
 .rates {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -65,10 +80,12 @@
   text-align: center;
   gap: var(--space-xl);
 }
+
 .rates div {
   display: grid;
   gap: var(--space-xxs);
 }
+
 .rates small {
   color: var(--text-secondary);
 }
