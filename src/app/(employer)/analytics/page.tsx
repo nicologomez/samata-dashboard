@@ -1,4 +1,12 @@
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
-export default function Page() {
-  return <PlaceholderPage title="Analytics" />;
+import type { Metadata } from "next";
+import { getEmployerAnalytics } from "@/services/analyticsService";
+import { EmployerAnalyticsView } from "@/views/employer/EmployerAnalyticsView";
+
+export const metadata: Metadata = {
+  title: "Analytics",
+};
+
+export default async function AnalyticsPage() {
+  const data = await getEmployerAnalytics();
+  return <EmployerAnalyticsView data={data} />;
 }

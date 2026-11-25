@@ -1,5 +1,4 @@
 .section {
-  grid-column: span 2;
   display: grid;
   align-content: start;
   gap: var(--space-lg);
@@ -11,6 +10,18 @@
   gap: var(--space-7xl);
   min-width: 0;
   padding: var(--space-3xl);
+}
+
+.content[data-has-tabs="true"] {
+  gap: var(--space-4xl);
+}
+
+.statHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
 }
 
 .statRow {
@@ -41,10 +52,4 @@
 
 .sessionsDot {
   color: var(--icon-brand);
-}
-
-@media (max-width: 1100px) {
-  .section {
-    grid-column: auto;
-  }
 }

@@ -33,6 +33,6 @@
   stroke: var(--color-orange-500);
 }
 
-.label {
+.axisLabel {
   fill: var(--text-tertiary);
 }

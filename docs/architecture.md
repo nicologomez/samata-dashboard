@@ -22,25 +22,29 @@
 | `Button` | Canonical action or link button | Variants: `primary`, `secondary`, `white`, `action`, `pills`, `basic`; supports `href` (`Link`) |
 | `Card` | Neutral surface container | `surface`: `default \| brand \| gradient`, `padding`: `none \| md \| lg`, `elevation`: `xs \| sm` |
 | `SectionHeader` | Section heading bar | Renders `h2`/`h3`, optional `Icon`, and trailing `action` slot |
+| `Select` | Universal hug-content select | Variants: `inline` and `pill` (with optional `leftIcon`) |
 | `TileButton` | Horizontal icon + copy tile | Supports `href` (`Link`) or `onClick` (`button`) |
 | `NavButton` | Sidebar route link | Active state via pathname, optional `icon` and `badge` |
-| `PeriodSelect` | Hug-content period selector | Native `<select>` (`monthly \| weekly \| daily`) overlaid on synced display label |
+| `PeriodSelect` | Period selector (`monthly \| weekly \| daily`) | Wraps universal `Select` |
 | `Badge` | Status/trend pill | `tone`: `success \| error \| neutral` |
 | `ProgressBar` | Determinate progress bar | Accessible `progressbar` with `value` and `max` |
 | `Avatar` | Initials avatar | Used for org switcher and user profile |
 | `Icon` | Inline SVG icon registry | CSS-masked `IconName` and `IconSize` |
 | `FormControls` | Accessible form inputs | `TextField`, `SelectField`, `CheckboxField`, `RadioField`, `ToggleField` |
-| `HorizontalTabs`, `Toast`, `Tooltip` | Staged UI primitives | Ready for upcoming sub-routes |
+| `HorizontalTabs`, `Toast`, `Tooltip` | Tab bar, status banner, tooltip | `HorizontalTabs` powers Analytics participation tabs |
 
 ## Reusable Patterns (`src/components/patterns/`)
 
 | Component | Role | Notes |
 | --- | --- | --- |
 | `MetricCard` | KPI card pattern | Composes `Card`, `Badge`, `Icon`, and `ProgressBar` |
-| `MetricStrip` | Responsive 3-column KPI strip | Wraps `MetricCard[]` cleanly for Home, Analytics, and other portals |
-| `TrendChart` | Generic multi-series SVG line chart | Token-colored series (`blue`, `brand`, `orange`) driven by `series` config |
+| `MetricStrip` | Responsive 3-column KPI strip | Wraps `MetricCard[]` cleanly for Home and other portals |
+| `MetricWideBlock` | Wide 4-column KPI banner | Gradient surface with dividers for Analytics (`At a Glance`) |
+| `ActionBanner` | Promotional / export banner | `compact` (Promote Availability) and `wide` (Download Summary) variants |
+| `Sparkline` | Mini smooth SVG trend curve | Used in metric breakdown tables |
+| `TrendChart` | Generic multi-series SVG line chart | Token-colored series (`blue`, `brand`, `orange`) with optional Y-axis & area fill |
 
 ## Privacy & Scope
 
 - Employer sees aggregated, anonymized counts only.
-- Destination routes (`/analytics`, `/employees`, `/integrations`, `/billing`, `/inbox`, `/support`, `/settings`) currently use `PlaceholderPage` pending their Figma frames.
+- Live Employer routes: `/` (`EmployerDashboardView`) and `/analytics` (`EmployerAnalyticsView`). Remaining routes (`/employees`, `/integrations`, `/billing`, `/inbox`, `/support`, `/settings`) use `PlaceholderPage` pending their Figma frames.

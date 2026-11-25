@@ -10,6 +10,7 @@ type Props = HTMLAttributes<HTMLElement> & {
   surface?: Surface;
   padding?: Padding;
   elevation?: Elevation;
+  glow?: boolean;
 };
 
 /** Neutral surface container primitive composed by dashboard cards and panels. */
@@ -18,13 +19,14 @@ export function Card({
   surface = "default",
   padding = "lg",
   elevation = "xs",
+  glow = false,
   className = "",
   ...props
 }: Props) {
   return (
     <Component
       {...props}
-      className={`${styles.card} ${styles[`surface-${surface}`]} ${styles[`pad-${padding}`]} ${styles[`elevation-${elevation}`]} ${className}`}
+      className={`${styles.card} ${styles[`surface-${surface}`]} ${styles[`pad-${padding}`]} ${styles[`elevation-${elevation}`]} ${glow ? styles.glow : ""} ${className}`}
     />
   );
 }

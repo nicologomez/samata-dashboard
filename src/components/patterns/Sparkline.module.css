@@ -1,0 +1,23 @@
+.spark {
+  display: block;
+  width: 112px;
+  height: 34px;
+}
+
+.spark path {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tone-positive path {
+  stroke: var(--icon-success);
+}
+
+.tone-negative path {
+  stroke: var(--icon-error);
+}
+
+.tone-neutral path {
+  stroke: var(--icon-secondary);
+}

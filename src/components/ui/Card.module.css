@@ -17,6 +17,14 @@
   border-color: var(--border-subtle);
 }
 
+.glow {
+  background-image: radial-gradient(
+    circle at 100% 0%,
+    color-mix(in srgb, var(--color-orange-300) 25%, transparent) 0%,
+    transparent 62%
+  );
+}
+
 .pad-none {
   padding: 0;
 }

@@ -151,3 +151,27 @@
   mask-image: url("/icons/arrow-down-right.svg");
   -webkit-mask-image: url("/icons/arrow-down-right.svg");
 }
+.icon[data-icon="chevron-right"] {
+  mask-image: url("/icons/chevron-right.svg");
+  -webkit-mask-image: url("/icons/chevron-right.svg");
+}
+.icon[data-icon="signal"] {
+  mask-image: url("/icons/signal.svg");
+  -webkit-mask-image: url("/icons/signal.svg");
+}
+.icon[data-icon="team"] {
+  mask-image: url("/icons/team.svg");
+  -webkit-mask-image: url("/icons/team.svg");
+}
+.icon[data-icon="pie"] {
+  mask-image: url("/icons/pie.svg");
+  -webkit-mask-image: url("/icons/pie.svg");
+}
+.icon[data-icon="calendar"] {
+  mask-image: url("/icons/calendar.svg");
+  -webkit-mask-image: url("/icons/calendar.svg");
+}
+.icon[data-icon="bookmark"] {
+  mask-image: url("/icons/bookmark.svg");
+  -webkit-mask-image: url("/icons/bookmark.svg");
+}

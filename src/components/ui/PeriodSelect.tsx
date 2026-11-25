@@ -1,14 +1,13 @@
 "use client";
 
-import type { Period } from "@/types/common";
-import { Icon } from "./Icon";
-import styles from "./PeriodSelect.module.css";
+import type { Period, SelectOption } from "@/types/common";
+import { Select } from "./Select";
 
-const periodLabels: Record<Period, string> = {
-  monthly: "Monthly",
-  weekly: "Weekly",
-  daily: "Daily",
-};
+const periodOptions: readonly SelectOption<Period>[] = [
+  { value: "monthly", label: "Monthly" },
+  { value: "weekly", label: "Weekly" },
+  { value: "daily", label: "Daily" },
+];
 
 type Props = {
   label: string;
@@ -16,28 +15,14 @@ type Props = {
   onChange: (value: Period) => void;
 };
 
-/** Hug-content period dropdown preserving native <select> keyboard and mobile picker behavior. */
+/** Period selector composing the universal hug-content Select primitive. */
 export function PeriodSelect({ label, value, onChange }: Props) {
   return (
-    <label className={styles.field}>
-      <span className={styles.visuallyHidden}>{label}</span>
-      <span
-        aria-hidden="true"
-        className={`${styles.display} type-label-medium-small`}
-      >
-        <span>{periodLabels[value]}</span>
-        <Icon name="chevron-down" size={16} className={styles.chevron} />
-      </span>
-      <select
-        className={styles.select}
-        aria-label={label}
-        value={value}
-        onChange={(event) => onChange(event.target.value as Period)}
-      >
-        <option value="monthly">Monthly</option>
-        <option value="weekly">Weekly</option>
-        <option value="daily">Daily</option>
-      </select>
-    </label>
+    <Select
+      label={label}
+      value={value}
+      options={periodOptions}
+      onChange={onChange}
+    />
   );
 }

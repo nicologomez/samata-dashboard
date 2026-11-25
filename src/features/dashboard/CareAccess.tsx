@@ -11,13 +11,30 @@ const careIcons = {
   Deactivated: "slash-octagon",
 } as const satisfies Record<string, IconName>;
 
-export function CareAccess({ data }: { data: EmployerDashboardData }) {
+type CareAccessData = Pick<
+  EmployerDashboardData,
+  "care" | "averageSetupDays" | "activationRate" | "onboardRate"
+>;
+
+export function CareAccess({
+  data,
+  showBookmark = false,
+}: {
+  data: CareAccessData;
+  showBookmark?: boolean;
+}) {
   return (
     <Card
       surface="brand"
       aria-labelledby="care-heading"
       className={styles.panel}
     >
+      {showBookmark && (
+        <span aria-hidden="true" className={styles.bookmark}>
+          <Icon name="bookmark" size={24} />
+        </span>
+      )}
+
       {/* Header */}
       <div className={styles.header}>
         <h2 id="care-heading" className="type-heading-h7">

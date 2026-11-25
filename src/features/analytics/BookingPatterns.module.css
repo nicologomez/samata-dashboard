@@ -1,0 +1,97 @@
+.section {
+  display: grid;
+  align-content: start;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.card {
+  display: grid;
+  gap: var(--space-lg);
+  padding: var(--space-3xl);
+}
+
+.summary {
+  display: grid;
+}
+
+.summary span {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.summary strong {
+  color: var(--text-primary);
+}
+
+.summary small {
+  color: var(--text-secondary);
+}
+
+.heatmapWrap {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.heatmap {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.headerRow,
+.timeRow {
+  display: grid;
+  grid-template-columns: 34px repeat(5, minmax(0, 1fr));
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.axisText {
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.cell {
+  height: 21px;
+  border-radius: var(--radius-xs);
+  background: var(--color-blue-50);
+}
+
+.cell[data-level="1"] {
+  background: var(--color-blue-100);
+}
+
+.cell[data-level="2"] {
+  background: var(--color-blue-200);
+}
+
+.cell[data-level="3"] {
+  background: var(--color-blue-400);
+}
+
+.cell[data-level="4"] {
+  background: var(--color-blue-700);
+}
+
+.legend {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.legendBar {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-50) 0%,
+    var(--color-blue-300) 35%,
+    var(--color-blue-400) 65%,
+    var(--color-blue-700) 100%
+  );
+}
+
+.legendLabels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}

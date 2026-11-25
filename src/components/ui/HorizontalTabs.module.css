@@ -1,22 +1,26 @@
 .tabs {
   display: flex;
   align-items: stretch;
-  gap: 16px;
-  border-bottom: 1px solid var(--border-default);
+  gap: var(--space-xl);
+  border-bottom: var(--stroke-sm) solid var(--border-default);
   overflow-x: auto;
 }
+
 .tabs button {
   flex: none;
   border: 0;
-  border-bottom: 2px solid transparent;
-  padding: 10px 4px;
+  border-bottom: var(--stroke-xl) solid transparent;
+  padding: 0 var(--space-xs) var(--space-xl);
   background: transparent;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
+
 .tabs button[aria-selected="true"] {
-  border-bottom-color: var(--border-brand);
-  color: var(--text-brand-dark);
+  border-bottom-color: var(--border-accent-blue);
+  color: var(--text-accent-blue);
 }
+
 .tabs button:hover {
-  color: var(--text-brand);
+  color: var(--text-primary);
 }

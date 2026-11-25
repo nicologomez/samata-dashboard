@@ -1,0 +1,91 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-brand-subtle);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4xl);
+}
+
+.variant-compact {
+  flex: 1;
+  min-height: 226px;
+}
+
+.variant-wide {
+  min-height: 132px;
+  display: flex;
+  align-items: center;
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4xl);
+}
+
+.variant-wide .copy {
+  gap: var(--space-2xl);
+  max-width: 373px;
+}
+
+.text {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.text h3 {
+  color: var(--text-primary);
+}
+
+.text p {
+  color: var(--text-secondary);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--interactive-link);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.cta:hover {
+  color: var(--interactive-link-hover);
+}
+
+.flowerArt {
+  position: absolute;
+  right: -40px;
+  bottom: -48px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.summaryArt {
+  position: absolute;
+  right: 8px;
+  top: -41px;
+  width: 341px;
+  height: 226px;
+  pointer-events: none;
+}
+
+.summaryBg {
+  position: absolute;
+  inset: 0;
+}
+
+.summaryChart {
+  position: relative;
+  margin-left: 49px;
+  margin-top: 72px;
+}
+
+@media (max-width: 720px) {
+  .summaryArt {
+    opacity: 0.35;
+  }
+}

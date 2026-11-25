@@ -1,0 +1,155 @@
+.section {
+  display: grid;
+  align-content: start;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 186px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4xl);
+}
+
+.summary {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.currentMonth {
+  display: grid;
+  gap: var(--space-xxs);
+}
+
+.currentMonth span {
+  color: var(--text-secondary);
+}
+
+.currentMonth strong {
+  color: var(--text-primary);
+}
+
+.statItem {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.statItem > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-secondary);
+}
+
+.statItem strong {
+  color: var(--text-primary);
+}
+
+.usedDot {
+  color: var(--icon-accent-blue);
+}
+
+.allocatedDot {
+  color: var(--color-blue-100);
+}
+
+.chartArea {
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.plotWithY {
+  position: relative;
+  height: 184px;
+}
+
+.gridlines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gridRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.gridRow span {
+  width: 34px;
+  text-align: right;
+  color: var(--text-tertiary);
+}
+
+.gridLine {
+  flex: 1;
+  height: var(--stroke-sm);
+  background: var(--border-subtle);
+}
+
+.bars {
+  position: absolute;
+  inset: 8px 0 8px 46px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-xl);
+  padding-inline: var(--space-xl);
+  align-items: end;
+}
+
+.barCol {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.trackWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.trackBar {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  background: var(--color-blue-50);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.usedBar {
+  width: 100%;
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  background: var(--color-blue-500);
+}
+
+.xLabels {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-xl);
+  padding-left: 46px;
+  padding-inline-end: var(--space-xl);
+  padding-inline-start: calc(46px + var(--space-xl));
+  text-align: center;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 820px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .bars,
+  .xLabels {
+    gap: var(--space-xs);
+  }
+}

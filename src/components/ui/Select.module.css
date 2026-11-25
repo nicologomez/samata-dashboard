@@ -19,10 +19,28 @@
   pointer-events: none;
 }
 
+.variant-pill {
+  border: var(--stroke-sm) solid var(--input-boxes-border);
+  border-radius: var(--radius-full);
+  background: var(--bg-primary);
+  padding: var(--space-sm) var(--space-lg);
+}
+
+.variant-pill .display {
+  gap: var(--space-xs);
+  color: var(--text-primary);
+}
+
+.variant-pill:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-primary-brand);
+}
+
 .field:hover .display {
   color: var(--text-primary);
 }
 
+.leftIcon,
 .chevron {
   flex: none;
   color: var(--icon-secondary);

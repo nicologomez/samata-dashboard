@@ -16,6 +16,7 @@ export const iconNames = [
   "bar-chart",
   "grid",
   "chevron-down",
+  "chevron-right",
   "chevron-up",
   "dot",
   "hourglass",
@@ -30,6 +31,11 @@ export const iconNames = [
   "arrow-right",
   "arrow-down-right",
   "arrow-up-right",
+  "signal",
+  "team",
+  "pie",
+  "calendar",
+  "bookmark",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
