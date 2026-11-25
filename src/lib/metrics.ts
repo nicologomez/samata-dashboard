@@ -1,4 +1,4 @@
-import type { Metric } from "@/types/dashboard";
+import type { Metric } from "@/types/common";
 
 export function formatMetric(metric: Metric): string {
   return `${metric.value.toLocaleString("en-US")}${metric.unit ?? ""}`;

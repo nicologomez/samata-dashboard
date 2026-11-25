@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import type { DashboardTask } from "@/types/dashboard";
+import type { DashboardTask } from "@/types/employer";
 import type { AsyncState } from "@/types/asyncState";
 
 import { runDemoTask } from "@/services/taskService";

@@ -1,28 +1,10 @@
-export type Period = "daily" | "weekly" | "monthly";
-export type Tone = "positive" | "negative" | "neutral";
+import type { Metric, Period, TrendPoint } from "./common";
 
 export type CareStatusLabel =
   | "Pending Access"
   | "Active Benefits"
   | "Grace Period"
   | "Deactivated";
-
-export interface Metric {
-  readonly id: string;
-  readonly label: string;
-  readonly value: number;
-  readonly unit?: string;
-  readonly change?: number;
-  readonly tone: Tone;
-  readonly note: string;
-  readonly progress?: number;
-}
-
-export interface TrendPoint {
-  readonly label: string;
-  readonly participants: number;
-  readonly sessions: number;
-}
 
 export interface DashboardTask {
   readonly id: string;
@@ -47,7 +29,7 @@ export interface EmployerProfile {
   readonly syncConnected: boolean;
 }
 
-export interface DashboardData {
+export interface EmployerDashboardData {
   readonly profile: EmployerProfile;
   readonly metricsByPeriod: Record<Period, readonly Metric[]>;
   readonly trendsByPeriod: Record<Period, readonly TrendPoint[]>;
@@ -60,6 +42,6 @@ export interface DashboardData {
 }
 
 export type EmployerShellData = Pick<
-  DashboardData,
+  EmployerDashboardData,
   "profile" | "sessionUsage"
 >;

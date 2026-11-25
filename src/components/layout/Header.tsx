@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { employerNav } from "@/config/navigation";
-import type { EmployerProfile } from "@/types/dashboard";
+import type { EmployerProfile } from "@/types/employer";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Avatar } from "@/components/ui/Avatar";

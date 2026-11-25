@@ -1,13 +1,18 @@
-import type { DashboardData } from "@/types/dashboard";
+import type { EmployerDashboardData } from "@/types/employer";
+import { employerQuickActions } from "@/config/navigation";
 import { AtAGlance } from "@/features/dashboard/AtAGlance";
 import { EmployeeParticipation } from "@/features/dashboard/EmployeeParticipation";
 import { CareAccess } from "@/features/dashboard/CareAccess";
 import { TaskList } from "@/features/dashboard/TaskList";
 import { QuickActions } from "@/features/dashboard/QuickActions";
-import styles from "./DashboardView.module.css";
+import styles from "./EmployerDashboardView.module.css";
 
 /** Page-level layout composition for the Employer Home dashboard. */
-export function DashboardView({ data }: { data: DashboardData }) {
+export function EmployerDashboardView({
+  data,
+}: {
+  data: EmployerDashboardData;
+}) {
   return (
     <main className={styles.dashboard}>
       <div className={styles.welcome}>
@@ -26,7 +31,7 @@ export function DashboardView({ data }: { data: DashboardData }) {
       <div className={styles.board}>
         {/* Band 1: At a Glance + Things to do */}
         <div className={styles.row}>
-          <AtAGlance data={data} />
+          <AtAGlance metricsByPeriod={data.metricsByPeriod} />
           <aside className={styles.rail} aria-label="Things to do">
             <TaskList tasks={data.tasks} />
           </aside>
@@ -34,11 +39,11 @@ export function DashboardView({ data }: { data: DashboardData }) {
         {/* Band 2: Employee Participation + Care Access + Quick Actions */}
         <div className={styles.row}>
           <div className={styles.analytics}>
-            <EmployeeParticipation data={data} />
+            <EmployeeParticipation trendsByPeriod={data.trendsByPeriod} />
             <CareAccess data={data} />
           </div>
           <aside className={styles.rail} aria-label="Quick actions">
-            <QuickActions />
+            <QuickActions actions={employerQuickActions} />
           </aside>
         </div>
       </div>

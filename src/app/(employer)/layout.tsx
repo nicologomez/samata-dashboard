@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { EmployerShell } from "@/components/layout/EmployerShell";
 import { getEmployerShellData } from "@/services/dashboardService";
+
+export const metadata: Metadata = {
+  title: "Employer Dashboard",
+};
 
 export default async function EmployerLayout({
   children,

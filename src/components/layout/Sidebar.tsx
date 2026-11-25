@@ -8,7 +8,7 @@ import {
   type NavGroup,
   type NavItem,
 } from "@/config/navigation";
-import type { EmployerShellData } from "@/types/dashboard";
+import type { EmployerShellData } from "@/types/employer";
 import { Avatar } from "@/components/ui/Avatar";
 import { Icon } from "@/components/ui/Icon";
 import { NavButton } from "@/components/ui/NavButton";

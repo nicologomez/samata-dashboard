@@ -1,4 +1,4 @@
-import type { Metric, Period } from "@/types/dashboard";
+import type { Metric, Period } from "@/types/common";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";

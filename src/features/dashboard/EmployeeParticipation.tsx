@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { DashboardData, Period, TrendPoint } from "@/types/dashboard";
+import type { Period, TrendPoint } from "@/types/common";
 import { getTrendForPeriod } from "@/lib/trends";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PeriodSelect } from "@/components/ui/PeriodSelect";
@@ -17,10 +17,18 @@ const participationSeries = [
   { key: "sessions", label: "Sessions Completed", tone: "brand" },
 ] as const satisfies readonly TrendSeries<TrendPoint>[];
 
-/** Employee participation trend chart and totals with an independent period filter. */
-export function EmployeeParticipation({ data }: { data: DashboardData }) {
+type Props = {
+  trendsByPeriod: Record<Period, readonly TrendPoint[]>;
+  title?: string;
+};
+
+/** Participation trend chart and period totals with an independent period filter. */
+export function EmployeeParticipation({
+  trendsByPeriod,
+  title = "Employee Participation",
+}: Props) {
   const [period, setPeriod] = useState<Period>("monthly");
-  const trend = getTrendForPeriod(data, period);
+  const trend = getTrendForPeriod(trendsByPeriod, period);
   const latest = trend.at(-1);
 
   return (
@@ -31,10 +39,10 @@ export function EmployeeParticipation({ data }: { data: DashboardData }) {
       <SectionHeader
         id="participation-heading"
         icon="bar-chart"
-        title="Employee Participation"
+        title={title}
         action={
           <PeriodSelect
-            label="Employee Participation period"
+            label={`${title} period`}
             value={period}
             onChange={setPeriod}
           />
@@ -69,7 +77,7 @@ export function EmployeeParticipation({ data }: { data: DashboardData }) {
           data={trend}
           labelKey="label"
           series={participationSeries}
-          title={`${period} employee participation`}
+          title={`${period} ${title.toLowerCase()}`}
           ariaLabel={`${period} active participants and completed sessions demonstration chart`}
           emptyMessage="No participation data for this period."
         />

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { EmployerShellData } from "@/types/dashboard";
+import type { EmployerShellData } from "@/types/employer";
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
 import styles from "./EmployerShell.module.css";

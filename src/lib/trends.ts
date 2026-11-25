@@ -1,22 +1,17 @@
-import type {
-  DashboardData,
-  Metric,
-  Period,
-  TrendPoint,
-} from "@/types/dashboard";
+import type { Metric, Period, TrendPoint } from "@/types/common";
 
 export function getTrendForPeriod(
-  data: DashboardData,
+  trendsByPeriod: Record<Period, readonly TrendPoint[]>,
   period: Period,
 ): readonly TrendPoint[] {
-  return data.trendsByPeriod[period];
+  return trendsByPeriod[period];
 }
 
 export function getMetricsForPeriod(
-  data: DashboardData,
+  metricsByPeriod: Record<Period, readonly Metric[]>,
   period: Period,
 ): readonly Metric[] {
-  return data.metricsByPeriod[period];
+  return metricsByPeriod[period];
 }
 
 export function maxSeriesValue<T extends object>(

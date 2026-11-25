@@ -17,8 +17,11 @@ const besley = Besley({
 });
 
 export const metadata: Metadata = {
-  title: "Samata Health | Employer Dashboard",
-  description: "Privacy-aware employer benefits dashboard demo",
+  title: {
+    template: "%s | Samata Health",
+    default: "Samata Health",
+  },
+  description: "Privacy-aware mental health benefits platform",
 };
 
 export default function RootLayout({

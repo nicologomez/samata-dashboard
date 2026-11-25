@@ -1,6 +1,6 @@
-import type { DashboardData } from "@/types/dashboard";
+import type { EmployerDashboardData } from "@/types/employer";
 
-export const dashboardFixture: DashboardData = {
+export const employerDashboardFixture: EmployerDashboardData = {
   profile: {
     company: "TrilumenAI",
     domain: "trilumenai.com",

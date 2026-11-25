@@ -1,4 +1,4 @@
-import type { Metric, Period } from "@/types/dashboard";
+import type { Metric, Period } from "@/types/common";
 import { MetricCard } from "./MetricCard";
 import styles from "./MetricStrip.module.css";
 

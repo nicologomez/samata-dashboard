@@ -1,14 +1,19 @@
 # Employer Home — Architecture & Component Inventory
 
 - **Role**: Employer / HR manager; Home at `/` (`src/app/(employer)/`)
-- **Layer boundaries**:
-  1. `src/styles/` — Subatomic design system tokens (`tokens.css`, `typography.css`, `gradients.css`, `effects.css`)
-  2. `src/components/ui/` — Domain-agnostic design system primitives (atoms & small molecules)
-  3. `src/components/patterns/` — Cross-page / cross-portal reusable compositions (`MetricCard`, `MetricStrip`, `TrendChart`)
-  4. `src/components/layout/` — App chrome (`EmployerShell`, `Sidebar`, `Header`, `PlaceholderPage`)
-  5. `src/features/<domain>/` — Product features owning their `SectionHeader`, local UI state, and domain composition (`AtAGlance`, `TaskList`, `EmployeeParticipation`, `CareAccess`, `QuickActions`, `AddEmployeeDialog`)
-  6. `src/views/` — Page-level layout grids assembling features (`DashboardView`)
-  7. `src/types/` → `src/data/` → `src/services/` (`getEmployerShellData`, `getEmployerDashboard`, `runDemoTask`) → Server Route (`src/app/`) → View
+- **Two-Bucket Rule**:
+  - **Universal** (`src/styles/`, `src/components/ui/`, `src/components/patterns/`, `src/types/common.ts`, `src/types/asyncState.ts`, `src/lib/`, plus props-driven features `AtAGlance`, `EmployeeParticipation`, `QuickActions`, `TaskList`) — shared across all user portals.
+  - **Role-specific** (`src/app/(employer)/`, `src/views/employer/`, `src/types/employer.ts`, `src/data/employerDashboard.ts`, `src/services/`, `CareAccess`, `AddEmployeeDialog`, `EmployerShell`) — scoped to Employer without deep folder nesting.
+
+## Layer Boundaries
+
+1. `src/styles/` — Subatomic design system tokens (`tokens.css`, `typography.css`, `gradients.css`, `effects.css`)
+2. `src/components/ui/` — Domain-agnostic design system primitives (imports only `types/common.ts`)
+3. `src/components/patterns/` — Cross-page / cross-portal reusable compositions (`MetricCard`, `MetricStrip`, `TrendChart`)
+4. `src/components/layout/` — App chrome (`EmployerShell`, `Sidebar`, `Header`, `PlaceholderPage`)
+5. `src/features/` — Product features owning their `SectionHeader`, local UI state, and props-driven composition (`AtAGlance`, `EmployeeParticipation`, `QuickActions`, `TaskList`, `CareAccess`, `AddEmployeeDialog`)
+6. `src/views/<portal>/` — Page-level layout grids grouped by portal (`src/views/employer/EmployerDashboardView.tsx`)
+7. `src/types/` → `src/data/` → `src/services/` (`getEmployerShellData`, `getEmployerDashboard`, `runDemoTask`) → Server Route (`src/app/`) → View
 
 ## UI Primitives (`src/components/ui/`)
 

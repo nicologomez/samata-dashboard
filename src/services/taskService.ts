@@ -1,15 +1,16 @@
-import type { DashboardTask } from "@/types/dashboard";
+import type { DashboardTask } from "@/types/employer";
 
 export type TaskResult = { readonly ok: true; readonly message: string };
 
 export async function runDemoTask(
   action: DashboardTask["action"],
 ): Promise<TaskResult> {
-  if (action === "remind")
+  if (action === "remind") {
     return {
       ok: true,
       message: "Demo: reminder prepared. No employee was contacted.",
     };
+  }
   return {
     ok: true,
     message:

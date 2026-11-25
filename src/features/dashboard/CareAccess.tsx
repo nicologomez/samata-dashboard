@@ -1,4 +1,4 @@
-import type { DashboardData } from "@/types/dashboard";
+import type { EmployerDashboardData } from "@/types/employer";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Icon, type IconName } from "@/components/ui/Icon";
@@ -11,7 +11,7 @@ const careIcons = {
   Deactivated: "slash-octagon",
 } as const satisfies Record<string, IconName>;
 
-export function CareAccess({ data }: { data: DashboardData }) {
+export function CareAccess({ data }: { data: EmployerDashboardData }) {
   return (
     <Card
       surface="brand"

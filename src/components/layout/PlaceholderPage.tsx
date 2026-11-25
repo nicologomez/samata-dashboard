@@ -5,7 +5,7 @@ export function PlaceholderPage({ title }: { title: string }) {
     <main className={styles.page}>
       <h2 className="type-heading-h5">{title}</h2>
       <p className="type-paragraph-small">
-        This employer demo route awaits its own Figma frame.
+        This demo route awaits its own Figma frame.
       </p>
     </main>
   );

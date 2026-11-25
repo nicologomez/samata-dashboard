@@ -1,6 +1,6 @@
 "use client";
 
-import type { Period } from "@/types/dashboard";
+import type { Period } from "@/types/common";
 import { Icon } from "./Icon";
 import styles from "./PeriodSelect.module.css";
 
