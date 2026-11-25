@@ -1,13 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import type { DashboardData, Period } from "@/types/dashboard";
+import type { DashboardData, Period, TrendPoint } from "@/types/dashboard";
 import { getTrendForPeriod } from "@/lib/trends";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PeriodSelect } from "@/components/ui/PeriodSelect";
 import { Icon } from "@/components/ui/Icon";
-import { ParticipationChart } from "./ParticipationChart";
+import {
+  TrendChart,
+  type TrendSeries,
+} from "@/components/patterns/TrendChart";
 import styles from "./EmployeeParticipation.module.css";
+
+const participationSeries = [
+  { key: "participants", label: "Active Participants", tone: "blue" },
+  { key: "sessions", label: "Sessions Completed", tone: "brand" },
+] as const satisfies readonly TrendSeries<TrendPoint>[];
 
 /** Employee participation trend chart and totals with an independent period filter. */
 export function EmployeeParticipation({ data }: { data: DashboardData }) {
@@ -57,7 +65,14 @@ export function EmployeeParticipation({ data }: { data: DashboardData }) {
             </strong>
           </div>
         </div>
-        <ParticipationChart data={trend} period={period} />
+        <TrendChart
+          data={trend}
+          labelKey="label"
+          series={participationSeries}
+          title={`${period} employee participation`}
+          ariaLabel={`${period} active participants and completed sessions demonstration chart`}
+          emptyMessage="No participation data for this period."
+        />
       </div>
     </section>
   );

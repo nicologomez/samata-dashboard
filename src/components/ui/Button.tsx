@@ -1,5 +1,9 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
-
+import Link from "next/link";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 import { Icon, type IconName, type IconSize } from "./Icon";
 import styles from "./Button.module.css";
 
@@ -23,21 +27,34 @@ type ButtonState =
   | "disabled"
   | "transparent";
 
-type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> & {
+type BaseProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   mode?: ButtonMode;
   state?: ButtonState;
-
   children?: ReactNode;
   text?: string;
   textVisible?: boolean;
-
   showLeftIcon?: boolean;
   showRightIcon?: boolean;
   leftIcon?: IconName;
   rightIcon?: IconName;
+  className?: string;
+  disabled?: boolean;
+  "aria-label"?: string;
 };
+
+type LinkButtonProps = BaseProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseProps> & {
+    href: string;
+  };
+
+type ActionButtonProps = BaseProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseProps> & {
+    href?: undefined;
+  };
+
+type Props = LinkButtonProps | ActionButtonProps;
 
 const iconSizes: Record<ButtonSize, IconSize> = {
   xs: 16,
@@ -77,50 +94,61 @@ export function Button({
   rightIcon = "close",
   className = "",
   disabled = false,
-  type = "button",
   "aria-label": ariaLabel,
-  ...props
+  ...rest
 }: Props) {
-  const appearance = variant;
-
   const isDisabled = disabled || state === "disabled";
   const isIconOnly = mode === "icon";
-
   const content = children ?? text ?? "Button";
-
   const labelClass =
-    appearance === "action" ? actionTypography[size] : typography[size];
-
+    variant === "action" ? actionTypography[size] : typography[size];
   const showText = textVisible && !isIconOnly;
-
   const resolvedLeftIcon = isIconOnly || showLeftIcon;
-
   const accessibleLabel =
     ariaLabel ?? (typeof content === "string" ? content : undefined);
 
-  return (
-    <button
-      {...props}
-      type={type}
-      disabled={isDisabled}
-      aria-label={accessibleLabel}
-      data-appearance={appearance}
-      data-size={size}
-      data-mode={mode}
-      data-state={state}
-      className={`${styles.button} ${styles[size]} ${className}`}
-    >
+  const inner = (
+    <>
       {resolvedLeftIcon && (
         <Icon name={leftIcon} size={iconSizes[size]} className={styles.icon} />
       )}
-
       {showText && (
         <span className={`${styles.text} ${labelClass}`}>{content}</span>
       )}
-
       {!isIconOnly && showRightIcon && (
         <Icon name={rightIcon} size={iconSizes[size]} className={styles.icon} />
       )}
+    </>
+  );
+
+  const sharedDataProps = {
+    "aria-label": accessibleLabel,
+    "data-appearance": variant,
+    "data-size": size,
+    "data-mode": mode,
+    "data-state": state,
+    className: `${styles.button} ${styles[size]} ${className}`,
+  };
+
+  if ("href" in rest && rest.href !== undefined) {
+    const { href, ...linkProps } = rest;
+    return (
+      <Link href={href} {...linkProps} {...sharedDataProps}>
+        {inner}
+      </Link>
+    );
+  }
+
+  const { type = "button", ...buttonProps } = rest;
+
+  return (
+    <button
+      {...buttonProps}
+      type={type}
+      disabled={isDisabled}
+      {...sharedDataProps}
+    >
+      {inner}
     </button>
   );
 }

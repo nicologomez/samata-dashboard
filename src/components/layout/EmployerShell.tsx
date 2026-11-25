@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { DashboardData } from "@/types/dashboard";
+import type { EmployerShellData } from "@/types/dashboard";
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
 import styles from "./EmployerShell.module.css";
@@ -10,7 +10,7 @@ export function EmployerShell({
   data,
 }: {
   children: React.ReactNode;
-  data: DashboardData;
+  data: EmployerShellData;
 }) {
   const [open, setOpen] = useState(false);
   return (

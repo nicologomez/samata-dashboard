@@ -5,7 +5,7 @@ import type { DashboardData, Period } from "@/types/dashboard";
 import { getMetricsForPeriod } from "@/lib/trends";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PeriodSelect } from "@/components/ui/PeriodSelect";
-import { MetricCard } from "./MetricCard";
+import { MetricStrip } from "@/components/patterns/MetricStrip";
 import styles from "./AtAGlance.module.css";
 
 /** KPI summary cards with an independent period filter. */
@@ -27,11 +27,7 @@ export function AtAGlance({ data }: { data: DashboardData }) {
           />
         }
       />
-      <div className={styles.metrics}>
-        {metrics.map((metric) => (
-          <MetricCard key={metric.id} metric={metric} period={period} />
-        ))}
-      </div>
+      <MetricStrip metrics={metrics} period={period} />
     </section>
   );
 }

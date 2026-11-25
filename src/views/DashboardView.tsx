@@ -15,7 +15,11 @@ export function DashboardView({ data }: { data: DashboardData }) {
           👋 Welcome back, {data.profile.user.split(" ")[0]}!
         </span>
         <span className="type-paragraph-small">
-          <span className={styles.statusDot} /> BambooHR Sync:{" "}
+          <span
+            className={styles.statusDot}
+            data-connected={data.profile.syncConnected}
+          />{" "}
+          BambooHR Sync:{" "}
           {data.profile.syncConnected ? "Connected" : "Disconnected"}
         </span>
       </div>

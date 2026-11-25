@@ -1,46 +1,40 @@
 .dialog {
-  border: 1px solid var(--border-default);
+  border: var(--stroke-sm) solid var(--border-default);
   border-radius: var(--radius-2xl);
   background: var(--bg-primary);
   color: var(--text-primary);
-  padding: 24px;
+  padding: var(--space-4xl);
   width: min(92vw, 440px);
   max-height: 90dvh;
   box-shadow: var(--effect-shadows-shadow-xl);
 }
+
 .dialog::backdrop {
   background: var(--bg-overlay);
 }
+
 .dialog h2 {
-  font-size: 20px;
-  margin: 0 0 8px;
+  margin-bottom: var(--space-md);
 }
+
 .dialog p {
-  font-size: 13px;
   color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
 }
+
 .dialog form {
   display: grid;
-  gap: 10px;
+  gap: var(--space-lg);
 }
-.dialog label {
-  font-size: 13px;
-}
-.dialog input {
-  width: 100%;
-  min-height: 40px;
-  padding: 8px 10px;
-  border: 1px solid var(--input-boxes-border);
-  border-radius: var(--radius-md);
-  background: var(--input-boxes-bg);
-}
-.dialog input:focus-visible {
-  outline: 2px solid var(--input-boxes-border-focus);
-}
-/* This line stops the form from navigating away on submit. */
+
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.feedback {
+  margin-top: var(--space-xl);
+  color: var(--text-secondary);
 }

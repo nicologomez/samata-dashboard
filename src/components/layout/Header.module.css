@@ -7,108 +7,127 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--space-xl);
   background: var(--bg-primary-brand);
   padding: var(--space-2xl) var(--space-4xl);
-  border-bottom: 1px solid var(--border-default);
+  border-bottom: var(--stroke-sm) solid var(--border-default);
 }
+
 .title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-xl);
 }
+
 .title h1 {
   margin: 0;
   color: var(--text-brand-dark);
 }
+
 .actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
+  gap: var(--space-xl);
 }
+
 .profile {
   position: relative;
-  border-left: 1px solid var(--border-default);
-  padding-left: 16px;
+  border-left: var(--stroke-sm) solid var(--border-default);
+  padding-left: var(--space-2xl);
 }
+
 .profile > button {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-lg);
   padding: 0;
   background: none;
   border: 0;
   text-align: left;
   color: var(--text-primary);
 }
+
 .profile strong,
 .profile small {
   display: block;
 }
+
 .profile small {
   color: var(--text-secondary);
 }
+
 .popup {
   position: absolute;
   right: 0;
-  top: calc(100% + 8px);
+  top: calc(100% + var(--space-md));
   width: 230px;
   background: var(--bg-primary);
-  border: 1px solid var(--border-default);
-  border-radius: 8px;
-  padding: 14px;
+  border: var(--stroke-sm) solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
   box-shadow: var(--effect-shadows-shadow-sm);
 }
+
 .popup p {
-  margin: 0 0 10px;
+  margin-bottom: var(--space-lg);
 }
+
 .search {
-  padding: 12px 24px;
+  padding: var(--space-xl) var(--space-4xl);
   background: var(--bg-primary);
-  border-bottom: 1px solid var(--border-default);
+  border-bottom: var(--stroke-sm) solid var(--border-default);
 }
+
 .search label {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-xs);
 }
+
 .search input {
   width: min(100%, 460px);
-  padding: 8px 12px;
-  border: 1px solid var(--border-default);
-  border-radius: 8px;
+  padding: var(--space-md) var(--space-xl);
+  border: var(--stroke-sm) solid var(--border-default);
+  border-radius: var(--radius-md);
 }
+
 .search p {
-  margin: 6px 0 0;
+  margin-top: var(--space-sm);
 }
+
 .mobileMenu {
   display: none;
   border: 0;
   background: none;
 }
+
+.chevron {
+  color: var(--icon-tertiary);
+}
+
 @media (max-width: 900px) {
   .mobileMenu {
     display: block;
   }
+
   .profile {
     display: none;
   }
 }
-/* This line locates the current route title from navigation data. */
+
 @media (max-width: 600px) {
   .header {
-    padding: 12px 16px;
+    padding: var(--space-xl) var(--space-2xl);
     flex-wrap: wrap;
   }
+
   .title {
     flex: 1 0 100%;
   }
+
   .actions {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
   }
-}
-.chevron {
-  color: var(--icon-tertiary);
 }

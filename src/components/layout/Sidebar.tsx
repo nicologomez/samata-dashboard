@@ -8,7 +8,7 @@ import {
   type NavGroup,
   type NavItem,
 } from "@/config/navigation";
-import type { DashboardData } from "@/types/dashboard";
+import type { EmployerShellData } from "@/types/dashboard";
 import { Avatar } from "@/components/ui/Avatar";
 import { Icon } from "@/components/ui/Icon";
 import { NavButton } from "@/components/ui/NavButton";
@@ -16,7 +16,7 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import styles from "./Sidebar.module.css";
 
 const navGroups: readonly NavGroup[] = ["Overview", "Workspace"];
-type Props = { data: DashboardData; open: boolean; onClose: () => void };
+type Props = { data: EmployerShellData; open: boolean; onClose: () => void };
 
 export function Sidebar({ data, open, onClose }: Props) {
   const [orgOpen, setOrgOpen] = useState(false);

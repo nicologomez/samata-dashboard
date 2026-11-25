@@ -3,30 +3,36 @@
   gap: var(--space-lg);
   min-width: 0;
 }
+
 .wrap svg {
   display: block;
   width: 100%;
   height: auto;
 }
+
 .gridline {
   stroke: var(--border-subtle);
   stroke-width: 1px;
 }
-.participants {
+
+.line {
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tone-blue {
   stroke: var(--color-blue-500);
-  stroke-width: 2.5px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
-.sessions {
+
+.tone-brand {
   stroke: var(--color-aqua-400);
-  stroke-width: 2.5px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
+
+.tone-orange {
+  stroke: var(--color-orange-500);
+}
+
 .label {
   fill: var(--text-tertiary);
-}
-.note {
-  color: var(--text-tertiary);
 }

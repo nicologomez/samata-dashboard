@@ -6,9 +6,23 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { formatChange, formatMetric } from "@/lib/metrics";
 import styles from "./MetricCard.module.css";
 
-type Props = { metric: Metric; period: Period };
-export function MetricCard({ metric, period }: Props) {
-  const comparison = `vs previous ${period === "daily" ? "day" : period === "weekly" ? "week" : "month"}`;
+const periodUnit: Record<Period, string> = {
+  daily: "day",
+  weekly: "week",
+  monthly: "month",
+};
+
+type Props = {
+  metric: Metric;
+  period?: Period;
+  comparisonLabel?: string;
+};
+
+/** Reusable KPI card composing Card, Badge, Icon, and ProgressBar. */
+export function MetricCard({ metric, period, comparisonLabel }: Props) {
+  const comparison =
+    comparisonLabel ?? (period ? `vs previous ${periodUnit[period]}` : undefined);
+
   return (
     <Card surface="gradient" elevation="sm" className={styles.metric}>
       <div className={styles.top}>
@@ -30,7 +44,9 @@ export function MetricCard({ metric, period }: Props) {
                   size={16}
                 />
               </Badge>
-              <span className="type-paragraph-xsmall">{comparison}</span>
+              {comparison && (
+                <span className="type-paragraph-xsmall">{comparison}</span>
+              )}
             </div>
           )}
         </div>
