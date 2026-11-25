@@ -42,8 +42,9 @@ export function Sidebar({ data, open, onClose }: Props) {
           <Image
             src="/images/samata-logo.svg"
             alt="Samata Health"
-            width={180}
+            width={192}
             height={40}
+            loading="eager"
             className={styles.logo}
           />
         </Link>
