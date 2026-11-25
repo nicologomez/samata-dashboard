@@ -1,7 +1,6 @@
 import type { Metric, Period } from "@/types/common";
-import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
-import { Icon } from "@/components/ui/Icon";
+import { Pill } from "@/components/ui/Pill";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { formatChange, formatMetric } from "@/lib/metrics";
 import styles from "./MetricCard.module.css";
@@ -33,17 +32,19 @@ export function MetricCard({ metric, period, comparisonLabel }: Props) {
           </strong>
           {metric.change !== undefined && (
             <div className={styles.comparison}>
-              <Badge tone={metric.tone === "negative" ? "error" : "success"}>
-                {formatChange(metric.change)}{" "}
-                <Icon
-                  name={
-                    metric.tone === "negative"
-                      ? "arrow-down-right"
-                      : "arrow-up-right"
-                  }
-                  size={16}
-                />
-              </Badge>
+              <Pill
+                variant="action"
+                tone={metric.tone === "negative" ? "error" : "success"}
+                showLeftIcon={false}
+                showRightIcon
+                rightIcon={
+                  metric.tone === "negative"
+                    ? "arrow-down-right"
+                    : "arrow-up-right"
+                }
+              >
+                {formatChange(metric.change)}
+              </Pill>
               {comparison && (
                 <span className="type-paragraph-xsmall">{comparison}</span>
               )}

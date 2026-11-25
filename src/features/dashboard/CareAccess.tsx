@@ -1,15 +1,9 @@
 import type { EmployerDashboardData } from "@/types/employer";
-import { Badge } from "@/components/ui/Badge";
+import { careStatusIcons } from "@/lib/care";
 import { Card } from "@/components/ui/Card";
-import { Icon, type IconName } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon";
+import { Pill } from "@/components/ui/Pill";
 import styles from "./CareAccess.module.css";
-
-const careIcons = {
-  "Pending Access": "hourglass",
-  "Active Benefits": "sun",
-  "Grace Period": "leaf",
-  Deactivated: "slash-octagon",
-} as const satisfies Record<string, IconName>;
 
 type CareAccessData = Pick<
   EmployerDashboardData,
@@ -49,10 +43,7 @@ export function CareAccess({
             <li key={item.label}>
               <span className={styles.statusIcon} data-status={item.label}>
                 <Icon
-                  name={
-                    careIcons[item.label as keyof typeof careIcons] ??
-                    "hourglass"
-                  }
+                  name={careStatusIcons[item.label] ?? "hourglass"}
                   size={16}
                 />
               </span>
@@ -69,7 +60,9 @@ export function CareAccess({
         <div className={styles.setup}>
           <span className="type-paragraph-xsmall">Average setup time</span>
 
-          <Badge tone="success">{data.averageSetupDays} days</Badge>
+          <Pill variant="display" tone="success" showLeftIcon showRightIcon={false}>
+            {data.averageSetupDays} days
+          </Pill>
         </div>
       </div>
 

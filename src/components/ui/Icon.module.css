@@ -155,6 +155,34 @@
   mask-image: url("/icons/chevron-right.svg");
   -webkit-mask-image: url("/icons/chevron-right.svg");
 }
+.icon[data-icon="chevron-left"] {
+  mask-image: url("/icons/chevron-left.svg");
+  -webkit-mask-image: url("/icons/chevron-left.svg");
+}
+.icon[data-icon="gantt-chart"] {
+  mask-image: url("/icons/gantt-chart 1.svg");
+  -webkit-mask-image: url("/icons/gantt-chart 1.svg");
+}
+.icon[data-icon="plus"] {
+  mask-image: url("/icons/plus.svg");
+  -webkit-mask-image: url("/icons/plus.svg");
+}
+.icon[data-icon="three-dot"] {
+  mask-image: url("/icons/Three-dot.svg");
+  -webkit-mask-image: url("/icons/Three-dot.svg");
+}
+.icon[data-icon="check"] {
+  mask-image: url("/icons/check.svg");
+  -webkit-mask-image: url("/icons/check.svg");
+}
+.icon[data-icon="minus"] {
+  mask-image: url("/icons/minus.svg");
+  -webkit-mask-image: url("/icons/minus.svg");
+}
+.icon[data-icon="dot-small"] {
+  mask-image: url("/icons/Dot-Small.svg");
+  -webkit-mask-image: url("/icons/Dot-Small.svg");
+}
 .icon[data-icon="signal"] {
   mask-image: url("/icons/signal.svg");
   -webkit-mask-image: url("/icons/signal.svg");

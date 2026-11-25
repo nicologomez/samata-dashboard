@@ -1,8 +1,7 @@
 import type { Metric } from "@/types/common";
 import { formatChange, formatMetric } from "@/lib/metrics";
-import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
-import { Icon } from "@/components/ui/Icon";
+import { Pill } from "@/components/ui/Pill";
 import styles from "./MetricWideBlock.module.css";
 
 type Props = {
@@ -36,19 +35,19 @@ export function MetricWideBlock({ heading, subtitle, metrics }: Props) {
                   {formatMetric(metric)}
                 </strong>
                 {metric.change !== undefined && (
-                  <Badge
+                  <Pill
+                    variant="action"
                     tone={metric.tone === "negative" ? "error" : "success"}
+                    showLeftIcon={false}
+                    showRightIcon
+                    rightIcon={
+                      metric.tone === "negative"
+                        ? "arrow-down-right"
+                        : "arrow-up-right"
+                    }
                   >
-                    {formatChange(metric.change)}{" "}
-                    <Icon
-                      name={
-                        metric.tone === "negative"
-                          ? "arrow-down-right"
-                          : "arrow-up-right"
-                      }
-                      size={16}
-                    />
-                  </Badge>
+                    {formatChange(metric.change)}
+                  </Pill>
                 )}
               </div>
               <small className="type-paragraph-xsmall">{metric.note}</small>

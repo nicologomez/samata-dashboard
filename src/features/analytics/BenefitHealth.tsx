@@ -4,9 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Period, SelectOption } from "@/types/common";
 import type { BenefitHealthPeriodData } from "@/types/employerAnalytics";
-import { Badge } from "@/components/ui/Badge";
 import { Icon } from "@/components/ui/Icon";
 import { PeriodSelect } from "@/components/ui/PeriodSelect";
+import { Pill } from "@/components/ui/Pill";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Select } from "@/components/ui/Select";
 import { Sparkline } from "@/components/patterns/Sparkline";
@@ -167,17 +167,19 @@ export function BenefitHealth({ dateRanges, byPeriod }: Props) {
 
               <div className={styles.changeCell}>
                 <span className="type-paragraph-small">{row.delta}</span>
-                <Badge tone={row.tone === "negative" ? "error" : "success"}>
-                  {Math.abs(row.changePct)}%{" "}
-                  <Icon
-                    name={
-                      row.tone === "negative"
-                        ? "arrow-down-right"
-                        : "arrow-up-right"
-                    }
-                    size={16}
-                  />
-                </Badge>
+                <Pill
+                  variant="action"
+                  tone={row.tone === "negative" ? "error" : "success"}
+                  showLeftIcon={false}
+                  showRightIcon
+                  rightIcon={
+                    row.tone === "negative"
+                      ? "arrow-down-right"
+                      : "arrow-up-right"
+                  }
+                >
+                  {Math.abs(row.changePct)}%
+                </Pill>
               </div>
 
               <div className={styles.trendCell}>

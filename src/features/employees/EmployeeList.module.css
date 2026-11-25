@@ -1,0 +1,79 @@
+.section {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2xl);
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.toolbar h2 {
+  color: var(--text-primary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.searchField {
+  width: 160px;
+}
+
+.memberCell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  min-width: 0;
+}
+
+.memberMeta {
+  display: grid;
+  gap: var(--space-xxs);
+  min-width: 0;
+}
+
+.memberName,
+.memberEmail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.memberName {
+  color: var(--text-primary);
+}
+
+.memberEmail {
+  color: var(--text-secondary);
+}
+
+.fallbackText {
+  font-style: italic;
+  color: var(--text-tertiary);
+}
+
+.rowActionBtn {
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 600px) {
+  .controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .searchField {
+    flex: 1 1 180px;
+    width: auto;
+  }
+}

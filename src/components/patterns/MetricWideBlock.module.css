@@ -27,7 +27,7 @@
 .columns {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-4xl);
+  gap: var(--space-5xl);
 }
 
 .column {
@@ -42,7 +42,7 @@
 .column + .column::before {
   content: "";
   position: absolute;
-  left: calc(var(--space-2xl) * -0.75);
+  left: calc(var(--space-2xl) * -1);
   top: 0;
   bottom: 0;
   width: var(--stroke-sm);

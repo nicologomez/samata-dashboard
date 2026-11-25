@@ -2,7 +2,7 @@ import styles from "./Avatar.module.css";
 
 type Props = {
   name: string;
-  size?: 36 | 40;
+  size?: 32 | 36 | 40;
 };
 
 export function Avatar({ name, size = 40 }: Props) {
@@ -13,9 +13,12 @@ export function Avatar({ name, size = 40 }: Props) {
     .map((word) => word[0]?.toUpperCase())
     .join("");
 
+  const labelType =
+    size === 32 ? "type-label-medium-small" : "type-label-medium-large";
+
   return (
     <span
-      className={`${styles.avatar} type-label-medium-large`}
+      className={`${styles.avatar} ${labelType}`}
       data-size={size}
       aria-label={name}
       title={name}

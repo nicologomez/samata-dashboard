@@ -1,0 +1,86 @@
+.root {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+}
+
+.sm {
+  width: 16px;
+  height: 16px;
+  --checkbox-radius: var(--radius-xs);
+}
+
+.md {
+  width: 20px;
+  height: 20px;
+  --checkbox-radius: var(--radius-sm);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.box {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: var(--stroke-sm) solid var(--input-boxes-border);
+  border-radius: var(--checkbox-radius);
+  background: var(--input-boxes-bg);
+  color: var(--icon-inverse);
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.root[data-checked="check"] .box,
+.root[data-checked="dash"] .box {
+  border-color: var(--bg-brand);
+  background: var(--bg-brand);
+}
+
+.root:not([data-disabled="true"]):is(:hover, [data-state="hover"])
+  .box {
+  border-color: var(--input-boxes-border-hover);
+}
+
+.root[data-checked="check"]:not([data-disabled="true"]):is(
+    :hover,
+    [data-state="hover"]
+  )
+  .box,
+.root[data-checked="dash"]:not([data-disabled="true"]):is(
+    :hover,
+    [data-state="hover"]
+  )
+  .box {
+  border-color: var(--interactive-secondary-hover);
+  background: var(--interactive-secondary-hover);
+}
+
+.root:not([data-disabled="true"]):has(.input:focus-visible) .box,
+.root[data-state="focused"]:not([data-disabled="true"]) .box {
+  box-shadow:
+    0 0 0 2px var(--bg-primary),
+    0 0 0 4px var(--bg-brand);
+}
+
+.root[data-disabled="true"] .box {
+  border-color: var(--input-boxes-border);
+  background: var(--input-boxes-bg-disabled);
+  color: var(--icon-disabled);
+}

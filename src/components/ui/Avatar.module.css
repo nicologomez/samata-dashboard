@@ -9,6 +9,11 @@
   background: var(--color-blue-200);
 }
 
+.avatar[data-size="32"] {
+  width: 32px;
+  height: 32px;
+}
+
 .avatar[data-size="36"] {
   width: 36px;
   height: 36px;
