@@ -10,6 +10,7 @@ import { runDemoTask } from "@/services/taskService";
 
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 import styles from "./TaskList.module.css";
 
@@ -43,10 +44,7 @@ export function TaskList({ tasks }: { tasks: readonly DashboardTask[] }) {
 
   return (
     <section aria-labelledby="task-title" className={styles.list}>
-      <h2 id="task-title" className="type-label-medium-medium">
-        <Icon name="clipboard" size={14} className={styles.headingIcon} />{" "}
-        Things to do
-      </h2>
+      <SectionHeader id="task-title" icon="clipboard" title="Things to do" />
 
       {visible.length === 0 && (
         <p className="type-paragraph-small">All demo tasks dismissed.</p>

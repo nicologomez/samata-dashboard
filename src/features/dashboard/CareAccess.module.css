@@ -1,15 +1,10 @@
 .panel {
-  min-width: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-2xl);
-  padding: var(--space-3xl) var(--space-4xl) var(--space-4xl);
-  background: var(--bg-primary-brand);
-  border: var(--stroke-sm) solid var(--border-default);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--effect-shadows-shadow-xs);
+  padding-bottom: var(--space-4xl);
 }
 
 .middle {
@@ -20,7 +15,7 @@
   gap: var(--space-2xl);
 }
 
-.panel h3 {
+.panel h2 {
   padding-bottom: var(--space-xl);
   border-bottom: var(--stroke-sm) solid var(--border-default);
 }
@@ -55,11 +50,6 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--bg-accent-blue-subtle);
-  color: var(--icon-accent-blue);
-}
-
-.statusIcon{
   background: var(--gradient-brand-aqua50-blue100);
   color: var(--icon-brand);
 }

@@ -1,5 +1,6 @@
 import type { DashboardData } from "@/types/dashboard";
 import { Badge } from "@/components/ui/Badge";
+import { Card } from "@/components/ui/Card";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import styles from "./CareAccess.module.css";
 
@@ -12,10 +13,16 @@ const careIcons = {
 
 export function CareAccess({ data }: { data: DashboardData }) {
   return (
-    <section className={styles.panel}>
+    <Card
+      surface="brand"
+      aria-labelledby="care-heading"
+      className={styles.panel}
+    >
       {/* Header */}
       <div className={styles.header}>
-        <h3 className="type-heading-h7">Care Access</h3>
+        <h2 id="care-heading" className="type-heading-h7">
+          Care Access
+        </h2>
       </div>
 
       {/* Middle */}
@@ -67,6 +74,6 @@ export function CareAccess({ data }: { data: DashboardData }) {
           </div>
         </div>
       </div>
-    </section>
+    </Card>
   );
 }

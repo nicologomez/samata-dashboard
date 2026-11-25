@@ -1,14 +1,38 @@
 .link {
   display: flex;
-  gap: 8px;
   align-items: center;
-  padding: 8px 12px;
+  gap: var(--space-md);
+  padding: 9px var(--space-xl);
   border-radius: var(--radius-sm);
   text-decoration: none;
   color: var(--text-secondary);
 }
+
 .link:hover,
 .active {
   background: var(--bg-brand-subtle);
+  color: var(--text-brand-dark);
+}
+
+.icon {
+  flex: none;
+  color: var(--icon-secondary);
+}
+
+.link:hover .icon,
+.active .icon {
+  color: var(--icon-brand);
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+}
+
+.badge {
+  flex: none;
+  padding: var(--space-2px) var(--space-sm);
+  border-radius: var(--radius-full);
+  background: var(--bg-primary);
   color: var(--text-brand-dark);
 }

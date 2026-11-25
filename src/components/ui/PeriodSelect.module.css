@@ -2,36 +2,45 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  border-radius: var(--radius-xs);
 }
 
-.field select {
-  appearance: none;
-  border: 0;
-  padding: 0 calc(16px + var(--space-sm)) 0 0;
-  background: transparent;
+.field:has(.select:focus-visible) {
+  outline: var(--stroke-xl) solid var(--border-focus);
+  outline-offset: var(--space-2px);
+}
+
+.display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
   color: var(--text-secondary);
-  cursor: pointer;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.field:hover .display {
+  color: var(--text-primary);
 }
 
 .chevron {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+  flex: none;
   color: var(--icon-secondary);
 }
 
-.chevronUp {
-  display: none;
+.select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.field select:open ~ .chevronDown {
-  display: none;
-}
-
-.field select:open ~ .chevronUp {
-  display: block;
+.select:focus-visible {
+  outline: none;
 }
 
 .visuallyHidden {

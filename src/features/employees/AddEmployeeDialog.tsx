@@ -43,7 +43,7 @@ export function AddEmployeeDialog({ open, onClose }: Props) {
         />
         <div className={styles.actions}>
           <Button type="submit">Prepare demo invite</Button>
-          <Button type="button" variant="outline" onClick={onClose}>
+          <Button type="button" variant="secondary" onClick={onClose}>
             Close
           </Button>
         </div>

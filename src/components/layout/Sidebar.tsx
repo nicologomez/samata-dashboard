@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
 import {
   employerNav,
   inboxLink,
@@ -9,30 +9,27 @@ import {
   type NavItem,
 } from "@/config/navigation";
 import type { DashboardData } from "@/types/dashboard";
+import { Avatar } from "@/components/ui/Avatar";
 import { Icon } from "@/components/ui/Icon";
+import { NavButton } from "@/components/ui/NavButton";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import styles from "./Sidebar.module.css";
-import Image from "next/image";
-import { Avatar } from "@/components/ui/Avatar";
 
 const navGroups: readonly NavGroup[] = ["Overview", "Workspace"];
 type Props = { data: DashboardData; open: boolean; onClose: () => void };
+
 export function Sidebar({ data, open, onClose }: Props) {
-  const pathname = usePathname();
   const [orgOpen, setOrgOpen] = useState(false);
+
   function navItem(item: Pick<NavItem, "label" | "href" | "icon">) {
-    const active = pathname === item.href;
     return (
-      <Link
+      <NavButton
         key={item.href}
         href={item.href}
-        aria-current={active ? "page" : undefined}
-        onClick={onClose}
-        className={`${styles.navLink} type-label-medium-medium ${active ? styles.active : ""}`}
-      >
-        <Icon name={item.icon} size={20} className={styles.navIcon} />
-        <span>{item.label}</span>
-      </Link>
+        icon={item.icon}
+        label={item.label}
+        onNavigate={onClose}
+      />
     );
   }
   return (
@@ -88,7 +85,9 @@ export function Sidebar({ data, open, onClose }: Props) {
             className={styles.orgPanel}
             role="status"
           >
-            <strong className="type-label-medium-medium">TrilumenAI</strong>
+            <strong className="type-label-medium-medium">
+              {data.profile.company}
+            </strong>
             <small className="type-paragraph-xsmall">
               Selected organization
             </small>

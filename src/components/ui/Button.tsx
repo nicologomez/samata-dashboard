@@ -11,9 +11,7 @@ type ButtonVariant =
   | "white"
   | "action"
   | "pills"
-  | "basic"
-  | "outline"
-  | "ghost";
+  | "basic";
 
 type ButtonMode = "button" | "icon";
 
@@ -83,12 +81,7 @@ export function Button({
   "aria-label": ariaLabel,
   ...props
 }: Props) {
-  const appearance =
-    variant === "outline"
-      ? "secondary"
-      : variant === "ghost"
-        ? "basic"
-        : variant;
+  const appearance = variant;
 
   const isDisabled = disabled || state === "disabled";
   const isIconOnly = mode === "icon";

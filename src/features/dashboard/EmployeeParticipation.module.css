@@ -1,0 +1,50 @@
+.section {
+  grid-column: span 2;
+  display: grid;
+  align-content: start;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.content {
+  display: grid;
+  gap: var(--space-7xl);
+  min-width: 0;
+  padding: var(--space-3xl);
+}
+
+.statRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xl);
+}
+
+.statItem {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.statItem > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.statItem strong {
+  color: var(--text-primary);
+}
+
+.participantsDot {
+  color: var(--icon-accent-blue);
+}
+
+.sessionsDot {
+  color: var(--icon-brand);
+}
+
+@media (max-width: 1100px) {
+  .section {
+    grid-column: auto;
+  }
+}

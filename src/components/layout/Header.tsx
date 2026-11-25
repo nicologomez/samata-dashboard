@@ -41,7 +41,7 @@ export function Header({
         <div className={styles.actions}>
           <Button onClick={() => setInviteOpen(true)}>Add Employees</Button>
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => setSearchOpen((v) => !v)}
             aria-expanded={searchOpen}
             aria-controls="employer-search"

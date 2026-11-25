@@ -1,8 +1,38 @@
 .card {
   min-width: 0;
-  border: var(--stroke-sm) solid var(--border-subtle);
+  border: var(--stroke-sm) solid var(--border-default);
   border-radius: var(--radius-2xl);
+}
+
+.surface-default {
+  background: var(--bg-primary);
+}
+
+.surface-brand {
+  background: var(--bg-primary-brand);
+}
+
+.surface-gradient {
   background: var(--gradient-brand-orange50-aqua50);
+  border-color: var(--border-subtle);
+}
+
+.pad-none {
+  padding: 0;
+}
+
+.pad-md {
+  padding: var(--space-xl);
+}
+
+.pad-lg {
   padding: var(--space-3xl) var(--space-4xl);
+}
+
+.elevation-xs {
   box-shadow: var(--effect-shadows-shadow-xs);
+}
+
+.elevation-sm {
+  box-shadow: var(--effect-shadows-shadow-sm);
 }

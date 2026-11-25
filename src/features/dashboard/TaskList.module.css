@@ -5,16 +5,6 @@
   min-width: 0;
 }
 
-.list h2 {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.headingIcon {
-  color: var(--icon-tertiary);
-}
-
 .cards {
   display: grid;
   gap: var(--space-lg);

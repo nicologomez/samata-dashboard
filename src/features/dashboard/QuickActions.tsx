@@ -1,5 +1,6 @@
-import Link from "next/link";
-import { Icon, type IconName } from "@/components/ui/Icon";
+import type { IconName } from "@/components/ui/Icon";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { TileButton } from "@/components/ui/TileButton";
 import styles from "./QuickActions.module.css";
 
 const actions = [
@@ -31,27 +32,16 @@ const actions = [
 export function QuickActions() {
   return (
     <section aria-labelledby="quick-heading" className={styles.quick}>
-      <h2 id="quick-heading" className="type-label-medium-medium">
-        <Icon name="grid" size={14} className={styles.headingIcon} /> Quick
-        Actions
-      </h2>
+      <SectionHeader id="quick-heading" icon="grid" title="Quick Actions" />
       <div className={styles.tiles}>
         {actions.map((action) => (
-          <Link href={action.href} className={styles.tile} key={action.href}>
-            <span aria-hidden="true" className={styles.iconTile}>
-              <Icon
-                name={action.icon}
-                size={40}
-                className={styles.actionIcon}
-              />
-            </span>
-            <span>
-              <strong className="type-label-medium-medium">
-                {action.label}
-              </strong>
-              <small className="type-paragraph-xsmall">{action.detail}</small>
-            </span>
-          </Link>
+          <TileButton
+            key={action.href}
+            href={action.href}
+            icon={action.icon}
+            title={action.label}
+            description={action.detail}
+          />
         ))}
       </div>
     </section>

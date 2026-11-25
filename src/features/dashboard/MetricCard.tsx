@@ -10,7 +10,7 @@ type Props = { metric: Metric; period: Period };
 export function MetricCard({ metric, period }: Props) {
   const comparison = `vs previous ${period === "daily" ? "day" : period === "weekly" ? "week" : "month"}`;
   return (
-    <Card className={styles.metric}>
+    <Card surface="gradient" elevation="sm" className={styles.metric}>
       <div className={styles.top}>
         <h3 className="type-paragraph-medium">{metric.label}</h3>
         <div className={styles.valueGroup}>

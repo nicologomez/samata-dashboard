@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  min-width: 0;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--text-primary);
+  min-width: 0;
+}
+
+.icon {
+  flex: none;
+  color: var(--icon-tertiary);
+}

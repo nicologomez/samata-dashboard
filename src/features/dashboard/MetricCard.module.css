@@ -4,10 +4,6 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-2xl);
-  padding: var(--space-3xl) var(--space-4xl);
-  background: var(--gradient-brand-orange50-aqua50);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--effect-shadows-shadow-sm);
 }
 .top {
   display: grid;

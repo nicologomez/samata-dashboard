@@ -1,26 +1,56 @@
 .tile {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr);
   width: 100%;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border: 1px solid var(--border-default);
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  border: var(--stroke-sm) solid var(--border-default);
   border-radius: var(--radius-md);
   background: var(--bg-primary);
   color: var(--text-primary);
   text-align: left;
+  text-decoration: none;
   box-shadow: var(--effect-shadows-shadow-xs);
 }
-.tile:hover {
+
+.noIcon {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.tile:hover:not(:disabled) {
   border-color: var(--border-hover);
   background: var(--bg-primary-brand);
 }
-.tile:active,
+
+.tile:active:not(:disabled),
 .tile[aria-pressed="true"] {
   border-color: var(--border-brand);
   background: var(--bg-brand-subtle);
 }
+
 .tile:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.iconTile {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.icon {
+  color: var(--icon-brand);
+}
+
+.copy {
+  display: grid;
+  gap: var(--space-xxs);
+  min-width: 0;
+}
+
+.copy small {
+  color: var(--text-secondary);
 }
