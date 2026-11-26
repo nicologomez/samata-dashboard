@@ -43,7 +43,6 @@ const columns: readonly DataTableColumn<EmployeeRecord, ColumnKey>[] = [
   {
     key: "employment",
     label: "Employment",
-    width: "172px",
     sortable: true,
     sortValue: (row) => row.employment,
   },
@@ -73,7 +72,6 @@ const columns: readonly DataTableColumn<EmployeeRecord, ColumnKey>[] = [
     label: "Renewal Date",
     width: "136px",
     sortable: true,
-    alignMenu: "right",
     sortValue: (row) =>
       row.renewalDate ? Date.parse(row.renewalDate) : undefined,
   },

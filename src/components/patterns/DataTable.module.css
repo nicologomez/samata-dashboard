@@ -38,95 +38,27 @@
   border-left: var(--stroke-sm) solid var(--border-default);
 }
 
-.thCell {
-  position: relative;
-}
-
 .headerLabel {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
 }
 
-.sortWrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
 .sortTrigger {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: var(--space-xxs) var(--space-xs);
-  margin-left: calc(var(--space-xs) * -1);
+  padding: 0;
   border: 0;
-  border-radius: var(--radius-xs);
   background: transparent;
   color: inherit;
   cursor: pointer;
 }
 
-.sortTrigger:hover,
-.sortTrigger[data-active="true"] {
-  color: var(--text-primary);
-  background: var(--bg-tertiary);
-}
-
 .sortTrigger:focus-visible {
   outline: var(--stroke-xl) solid var(--border-focus);
   outline-offset: var(--space-2px);
-}
-
-.sortMenu {
-  position: absolute;
-  top: calc(100% + var(--space-sm));
-  left: 0;
-  z-index: 20;
-  min-width: 152px;
-  display: grid;
-  padding: var(--space-xs);
-  border: var(--stroke-sm) solid var(--border-default);
-  border-radius: var(--radius-md);
-  background: var(--bg-primary);
-  box-shadow: var(--effect-shadows-shadow-md);
-}
-
-.sortMenu[data-align="right"] {
-  left: auto;
-  right: 0;
-}
-
-.sortOption {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
-  border: 0;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--text-secondary);
-  text-align: left;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.sortOption:hover {
-  background: var(--bg-primary-brand);
-  color: var(--text-primary);
-}
-
-.sortOption[aria-checked="true"] {
-  background: var(--bg-brand-subtle);
-  color: var(--text-brand-dark);
-}
-
-.sortReset {
-  border-top: var(--stroke-sm) solid var(--border-subtle);
-  margin-top: var(--space-2px);
-  padding-top: var(--space-sm);
-  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  border-radius: var(--radius-xxs);
 }
 
 .table tbody tr {

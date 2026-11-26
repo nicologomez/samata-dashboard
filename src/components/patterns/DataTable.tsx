@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Icon } from "@/components/ui/Icon";
 import styles from "./DataTable.module.css";
@@ -12,7 +12,6 @@ export interface DataTableColumn<T = unknown, K extends string = string> {
   readonly label: string;
   readonly width?: string;
   readonly sortable?: boolean;
-  readonly alignMenu?: "left" | "right";
   readonly sortValue?: (row: T) => string | number | undefined;
 }
 
@@ -59,7 +58,7 @@ type Props<T, K extends string> = {
   className?: string;
 };
 
-/** Domain-blind data table pattern supporting Select-All/Dash, column sort dropdowns, and balanced action columns. */
+/** Domain-blind data table pattern supporting Select-All/Dash, direct chevron sorting (down A-Z, up Z-A), and 48px edge columns. */
 export function DataTable<T, K extends string>({
   tableLabel,
   columns,
@@ -79,29 +78,6 @@ export function DataTable<T, K extends string>({
 }: Props<T, K>) {
   const [selectedKeys, setSelectedKeys] = useState<Set<string>>(() => new Set());
   const [sortState, setSortState] = useState<SortState<K>>(null);
-  const [openMenuKey, setOpenMenuKey] = useState<K | null>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!openMenuKey) return;
-
-    function handlePointerDown(event: MouseEvent) {
-      if (!frameRef.current?.contains(event.target as Node)) {
-        setOpenMenuKey(null);
-      }
-    }
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpenMenuKey(null);
-    }
-
-    document.addEventListener("mousedown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [openMenuKey]);
 
   const sortedRows = useMemo(() => {
     if (!sortState) return rows;
@@ -139,15 +115,29 @@ export function DataTable<T, K extends string>({
     });
   }
 
-  function applySort(key: K, direction: SortDirection | null) {
-    setSortState(direction ? { key, direction } : null);
-    setOpenMenuKey(null);
+  function toggleSort(key: K) {
+    setSortState((prev) => {
+      if (prev?.key === key) {
+        return { key, direction: prev.direction === "desc" ? "asc" : "desc" };
+      }
+      return { key, direction: "desc" };
+    });
   }
 
   return (
-    <div ref={frameRef} className={`${styles.frame} ${className}`}>
+    <div className={`${styles.frame} ${className}`}>
       <div className={styles.scrollArea}>
         <table className={styles.table} aria-label={tableLabel}>
+          <colgroup>
+            {selectable && <col style={{ width: "48px" }} />}
+            {columns.map((col) => (
+              <col
+                key={col.key}
+                style={col.width ? { width: col.width } : undefined}
+              />
+            ))}
+            {hasRowAction && <col style={{ width: "48px" }} />}
+          </colgroup>
           <thead>
             <tr>
               {selectable && (
@@ -165,7 +155,7 @@ export function DataTable<T, K extends string>({
               )}
               {columns.map((col) => {
                 const isSorted = sortState?.key === col.key;
-                const isOpen = openMenuKey === col.key;
+                const isDesc = isSorted && sortState.direction === "desc";
                 const ariaSort = isSorted
                   ? sortState.direction === "asc"
                     ? "ascending"
@@ -175,83 +165,20 @@ export function DataTable<T, K extends string>({
                     : undefined;
 
                 return (
-                  <th
-                    key={col.key}
-                    scope="col"
-                    aria-sort={ariaSort}
-                    className={styles.thCell}
-                    style={col.width ? { width: col.width } : undefined}
-                  >
+                  <th key={col.key} scope="col" aria-sort={ariaSort}>
                     {col.sortable ? (
-                      <div className={styles.sortWrap}>
-                        <button
-                          type="button"
-                          className={`${styles.sortTrigger} type-label-medium-small`}
-                          data-active={isSorted ? "true" : undefined}
-                          aria-expanded={isOpen}
-                          aria-haspopup="menu"
-                          onClick={() =>
-                            setOpenMenuKey((prev) =>
-                              prev === col.key ? null : col.key,
-                            )
-                          }
-                        >
-                          <span>{col.label}</span>
-                          <Icon
-                            name={
-                              isSorted && sortState.direction === "asc"
-                                ? "chevron-up"
-                                : "chevron-down"
-                            }
-                            size={12}
-                          />
-                        </button>
-
-                        {isOpen && (
-                          <div
-                            role="menu"
-                            aria-label={`Sort by ${col.label}`}
-                            className={styles.sortMenu}
-                            data-align={col.alignMenu ?? "left"}
-                          >
-                            <button
-                              type="button"
-                              role="menuitemradio"
-                              aria-checked={
-                                isSorted && sortState.direction === "asc"
-                              }
-                              className={`${styles.sortOption} type-label-medium-small`}
-                              onClick={() => applySort(col.key, "asc")}
-                            >
-                              <Icon name="chevron-up" size={12} />
-                              <span>Sort A to Z</span>
-                            </button>
-                            <button
-                              type="button"
-                              role="menuitemradio"
-                              aria-checked={
-                                isSorted && sortState.direction === "desc"
-                              }
-                              className={`${styles.sortOption} type-label-medium-small`}
-                              onClick={() => applySort(col.key, "desc")}
-                            >
-                              <Icon name="chevron-down" size={12} />
-                              <span>Sort Z to A</span>
-                            </button>
-                            {isSorted && (
-                              <button
-                                type="button"
-                                role="menuitem"
-                                className={`${styles.sortOption} ${styles.sortReset} type-label-medium-small`}
-                                onClick={() => applySort(col.key, null)}
-                              >
-                                <Icon name="close" size={12} />
-                                <span>Default order</span>
-                              </button>
-                            )}
-                          </div>
-                        )}
-                      </div>
+                      <button
+                        type="button"
+                        className={`${styles.sortTrigger} type-label-medium-small`}
+                        onClick={() => toggleSort(col.key)}
+                        aria-label={`Sort ${col.label} ${isDesc ? "ascending" : "descending"}`}
+                      >
+                        <span>{col.label}</span>
+                        <Icon
+                          name={isDesc ? "chevron-up" : "chevron-down"}
+                          size={12}
+                        />
+                      </button>
                     ) : (
                       <span
                         className={`${styles.headerLabel} type-label-medium-small`}
