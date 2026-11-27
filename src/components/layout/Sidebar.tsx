@@ -1,27 +1,56 @@
 "use client";
-import { useState } from "react";
+
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  employerNav,
-  inboxLink,
-  type NavGroup,
-  type NavItem,
-} from "@/config/navigation";
-import type { EmployerShellData } from "@/types/employer";
 import { Avatar } from "@/components/ui/Avatar";
-import { Icon } from "@/components/ui/Icon";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { NavButton } from "@/components/ui/NavButton";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import styles from "./Sidebar.module.css";
 
-const navGroups: readonly NavGroup[] = ["Overview", "Workspace"];
-type Props = { data: EmployerShellData; open: boolean; onClose: () => void };
+export type PortalNavItem = {
+  readonly label: string;
+  readonly href: string;
+  readonly icon: IconName;
+};
 
-export function Sidebar({ data, open, onClose }: Props) {
+export type PortalWorkspace = {
+  readonly label: string;
+  readonly name: string;
+  readonly subtitle: string;
+  readonly emptyNote?: string;
+};
+
+type NavSection = {
+  readonly title: string;
+  readonly items: readonly PortalNavItem[];
+};
+
+type Props = {
+  homeHref?: string;
+  workspace?: PortalWorkspace;
+  topItem?: PortalNavItem;
+  groups: readonly NavSection[];
+  footerGroup?: NavSection;
+  quotaCard?: ReactNode;
+  open: boolean;
+  onClose: () => void;
+};
+
+/** Portal-agnostic sticky navigation rail with brand lockup, optional workspace switcher, grouped links, and bottom slot. */
+export function Sidebar({
+  homeHref = "/",
+  workspace,
+  topItem,
+  groups,
+  footerGroup,
+  quotaCard,
+  open,
+  onClose,
+}: Props) {
   const [orgOpen, setOrgOpen] = useState(false);
 
-  function navItem(item: Pick<NavItem, "label" | "href" | "icon">) {
+  function renderNavItem(item: PortalNavItem) {
     return (
       <NavButton
         key={item.href}
@@ -32,13 +61,14 @@ export function Sidebar({ data, open, onClose }: Props) {
       />
     );
   }
+
   return (
     <aside
       className={`${styles.sidebar} ${open ? styles.open : ""}`}
-      aria-label="Employer navigation"
+      aria-label="Primary navigation"
     >
       <div className={styles.brand}>
-        <Link href="/" aria-label="Go to Home">
+        <Link href={homeHref} aria-label="Go to Home">
           <Image
             src="/images/samata-logo.svg"
             alt="Samata Health"
@@ -57,79 +87,73 @@ export function Sidebar({ data, open, onClose }: Props) {
           <Icon name="close" size={20} />
         </button>
       </div>
-      <div className={styles.organization}>
-        <span className={`${styles.groupLabel} type-overlines-small`}>
-          {data.profile.plan}
-        </span>
-        <button
-          className={styles.switcher}
-          type="button"
-          aria-label={`${data.profile.company} organization selector`}
-          aria-expanded={orgOpen}
-          aria-controls="organization-options"
-          onClick={() => setOrgOpen((value) => !value)}
-        >
-          <Avatar name={data.profile.company} size={36} />
-          <span>
-            <strong className="type-label-medium-medium">
-              {data.profile.company}
-            </strong>
-            <small className="type-paragraph-small">
-              {data.profile.domain}
-            </small>
+
+      {workspace && (
+        <div className={styles.organization}>
+          <span className={`${styles.groupLabel} type-overlines-small`}>
+            {workspace.label}
           </span>
-          <Icon name="chevron-down" size={20} className={styles.chevron} />
-        </button>
-        {orgOpen && (
-          <div
-            id="organization-options"
-            className={styles.orgPanel}
-            role="status"
+          <button
+            className={styles.switcher}
+            type="button"
+            aria-label={`${workspace.name} workspace selector`}
+            aria-expanded={orgOpen}
+            aria-controls="workspace-options"
+            onClick={() => setOrgOpen((value) => !value)}
           >
-            <strong className="type-label-medium-medium">
-              {data.profile.company}
-            </strong>
-            <small className="type-paragraph-xsmall">
-              Selected organization
-            </small>
-            <p className="type-paragraph-xsmall">
-              No other organizations in this demo.
-            </p>
-          </div>
-        )}
-      </div>
-      <nav aria-label="Inbox" className={styles.inbox}>
-        {navItem(inboxLink)}
-      </nav>
-      {navGroups.map((group) => (
-        <nav className={styles.links} aria-label={group} key={group}>
-          <h2 className="type-overlines-small">{group}</h2>
-          {employerNav.filter((item) => item.group === group).map(navItem)}
+            <Avatar name={workspace.name} size={36} />
+            <span>
+              <strong className="type-label-medium-medium">
+                {workspace.name}
+              </strong>
+              <small className="type-paragraph-small">
+                {workspace.subtitle}
+              </small>
+            </span>
+            <Icon name="chevron-down" size={20} className={styles.chevron} />
+          </button>
+          {orgOpen && (
+            <div
+              id="workspace-options"
+              className={styles.orgPanel}
+              role="status"
+            >
+              <strong className="type-label-medium-medium">
+                {workspace.name}
+              </strong>
+              <small className="type-paragraph-xsmall">Selected workspace</small>
+              {workspace.emptyNote && (
+                <p className="type-paragraph-xsmall">{workspace.emptyNote}</p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {topItem && (
+        <nav aria-label={topItem.label} className={styles.inbox}>
+          {renderNavItem(topItem)}
+        </nav>
+      )}
+
+      {groups.map((group) => (
+        <nav className={styles.links} aria-label={group.title} key={group.title}>
+          <h2 className="type-overlines-small">{group.title}</h2>
+          {group.items.map(renderNavItem)}
         </nav>
       ))}
-      <div className={styles.bottom}>
-        <section className={styles.usage} aria-label="Sessions this month">
-          <span className="type-paragraph-small">Sessions this month</span>
-          <strong className="type-heading-alt-medium-h3">
-            {data.sessionUsage.used}
-          </strong>
-          <ProgressBar
-            label="Sessions used out of monthly allowance"
-            value={data.sessionUsage.used}
-            max={data.sessionUsage.limit}
-          />
-          <small className="type-label-medium-medium">
-            {data.sessionUsage.used} of {data.sessionUsage.limit} used
-          </small>
-          <Link className="type-label-medium-small" href="/analytics">
-            View Details <Icon name="arrow-right" size={12} />
-          </Link>
-        </section>
-        <nav aria-label="General" className={styles.links}>
-          <h2 className="type-overlines-small">General</h2>
-          {employerNav.filter((item) => item.group === "General").map(navItem)}
-        </nav>
-      </div>
+
+      {(quotaCard || footerGroup) && (
+        <div className={styles.bottom}>
+          {quotaCard}
+          {footerGroup && (
+            <nav aria-label={footerGroup.title} className={styles.links}>
+              <h2 className="type-overlines-small">{footerGroup.title}</h2>
+              {footerGroup.items.map(renderNavItem)}
+            </nav>
+          )}
+        </div>
+      )}
     </aside>
   );
 }

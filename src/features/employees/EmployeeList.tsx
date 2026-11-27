@@ -36,41 +36,42 @@ const columns: readonly DataTableColumn<EmployeeRecord, ColumnKey>[] = [
   {
     key: "employee",
     label: "Employee",
-    width: "240px",
+    weight: 1.45,
     sortable: true,
     sortValue: (row) => row.name,
   },
   {
     key: "employment",
     label: "Employment",
+    weight: 1,
     sortable: true,
     sortValue: (row) => row.employment,
   },
   {
     key: "annualSessions",
     label: "Annual Sessions",
-    width: "162px",
+    weight: 1,
     sortable: true,
     sortValue: (row) => row.annualSessions,
   },
   {
     key: "location",
     label: "Location",
-    width: "162px",
+    weight: 1,
     sortable: true,
     sortValue: (row) => row.location,
   },
   {
     key: "status",
     label: "Status",
-    width: "140px",
+    weight: 1,
     sortable: true,
     sortValue: (row) => statusPillMap[row.status].label,
   },
   {
     key: "renewalDate",
     label: "Renewal Date",
-    width: "136px",
+    weight: 1,
     sortable: true,
     sortValue: (row) =>
       row.renewalDate ? Date.parse(row.renewalDate) : undefined,
@@ -181,7 +182,6 @@ export function EmployeeList({ employees, totalEmployees }: Props) {
             size="xl"
             mode="icon"
             leftIcon="three-dot"
-            className={styles.rowActionBtn}
             aria-label={`More actions for ${row.name}`}
           />
         )}

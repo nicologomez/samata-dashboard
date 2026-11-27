@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Icon } from "@/components/ui/Icon";
 import styles from "./DataTable.module.css";
@@ -11,6 +11,8 @@ export interface DataTableColumn<T = unknown, K extends string = string> {
   readonly key: K;
   readonly label: string;
   readonly width?: string;
+  /** Relative track weight (fr) for CSS Grid column sizing. */
+  readonly weight?: number;
   readonly sortable?: boolean;
   readonly sortValue?: (row: T) => string | number | undefined;
 }
@@ -58,7 +60,7 @@ type Props<T, K extends string> = {
   className?: string;
 };
 
-/** Domain-blind data table pattern supporting Select-All/Dash, direct chevron sorting (down A-Z, up Z-A), and 48px edge columns. */
+/** Domain-blind ARIA Grid table supporting Select-All/Dash, direct chevron sorting, equal cross-browser layout, and mobile-only horizontal scroll. */
 export function DataTable<T, K extends string>({
   tableLabel,
   columns,
@@ -98,6 +100,17 @@ export function DataTable<T, K extends string>({
   const allChecked = rowKeys.length > 0 && selectedCount === rowKeys.length;
   const someChecked = selectedCount > 0 && selectedCount < rowKeys.length;
 
+  const gridTemplate = [
+    selectable ? "48px" : null,
+    ...columns.map((col) => {
+      if (col.weight !== undefined) return `minmax(0, ${col.weight}fr)`;
+      return col.width ? col.width : "minmax(0, 1fr)";
+    }),
+    hasRowAction ? "48px" : null,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   function toggleAll() {
     if (allChecked || someChecked) {
       setSelectedKeys(new Set());
@@ -127,21 +140,16 @@ export function DataTable<T, K extends string>({
   return (
     <div className={`${styles.frame} ${className}`}>
       <div className={styles.scrollArea}>
-        <table className={styles.table} aria-label={tableLabel}>
-          <colgroup>
-            {selectable && <col style={{ width: "48px" }} />}
-            {columns.map((col) => (
-              <col
-                key={col.key}
-                style={col.width ? { width: col.width } : undefined}
-              />
-            ))}
-            {hasRowAction && <col style={{ width: "48px" }} />}
-          </colgroup>
-          <thead>
-            <tr>
+        <div
+          role="table"
+          className={styles.table}
+          aria-label={tableLabel}
+          style={{ "--table-cols": gridTemplate } as CSSProperties}
+        >
+          <div role="rowgroup" className={styles.thead}>
+            <div role="row" className={styles.headerRow}>
               {selectable && (
-                <th scope="col" className={styles.checkCol}>
+                <div role="columnheader" className={`${styles.th} ${styles.checkCol}`}>
                   <div className={styles.centerCell}>
                     <Checkbox
                       size="sm"
@@ -151,7 +159,7 @@ export function DataTable<T, K extends string>({
                       label={`Select all in ${tableLabel}`}
                     />
                   </div>
-                </th>
+                </div>
               )}
               {columns.map((col) => {
                 const isSorted = sortState?.key === col.key;
@@ -165,7 +173,12 @@ export function DataTable<T, K extends string>({
                     : undefined;
 
                 return (
-                  <th key={col.key} scope="col" aria-sort={ariaSort}>
+                  <div
+                    key={col.key}
+                    role="columnheader"
+                    aria-sort={ariaSort}
+                    className={styles.th}
+                  >
                     {col.sortable ? (
                       <button
                         type="button"
@@ -177,6 +190,7 @@ export function DataTable<T, K extends string>({
                         <Icon
                           name={isDesc ? "chevron-up" : "chevron-down"}
                           size={12}
+                          className={styles.sortChevron}
                         />
                       </button>
                     ) : (
@@ -186,26 +200,32 @@ export function DataTable<T, K extends string>({
                         {col.label}
                       </span>
                     )}
-                  </th>
+                  </div>
                 );
               })}
               {hasRowAction && (
-                <th scope="col" className={styles.actionCol}>
+                <div role="columnheader" className={`${styles.th} ${styles.actionCol}`}>
                   <span className={styles.visuallyHidden}>Actions</span>
-                </th>
+                </div>
               )}
-            </tr>
-          </thead>
-          <tbody>
+            </div>
+          </div>
+
+          <div role="rowgroup" className={styles.tbody}>
             {sortedRows.map((row) => {
               const key = getRowKey(row);
               const rowLabel = getRowLabel?.(row) ?? key;
               const isChecked = selectedKeys.has(key);
 
               return (
-                <tr key={key} data-selected={isChecked ? "true" : undefined}>
+                <div
+                  key={key}
+                  role="row"
+                  className={styles.bodyRow}
+                  data-selected={isChecked ? "true" : undefined}
+                >
                   {selectable && (
-                    <td className={styles.checkCol}>
+                    <div role="cell" className={`${styles.td} ${styles.checkCol}`}>
                       <div className={styles.centerCell}>
                         <Checkbox
                           size="sm"
@@ -214,23 +234,25 @@ export function DataTable<T, K extends string>({
                           label={`Select ${rowLabel}`}
                         />
                       </div>
-                    </td>
+                    </div>
                   )}
                   {columns.map((col) => (
-                    <td key={col.key}>{renderCell(row, col.key)}</td>
+                    <div key={col.key} role="cell" className={styles.td}>
+                      {renderCell(row, col.key)}
+                    </div>
                   ))}
                   {hasRowAction && (
-                    <td className={styles.actionCol}>
+                    <div role="cell" className={`${styles.td} ${styles.actionCol}`}>
                       <div className={styles.centerCell}>
                         {renderRowAction?.(row)}
                       </div>
-                    </td>
+                    </div>
                   )}
-                </tr>
+                </div>
               );
             })}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
 
       {(footerSummary || onPrevPage || onNextPage) && (

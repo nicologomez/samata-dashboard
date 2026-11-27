@@ -7,7 +7,7 @@
     0px 0px 100px 0px rgba(185, 227, 227, 0.4);
   --effect-shadows-shadow-xs: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);
   --effect-shadows-shadow-xs-skeuomorphic:
-    s 0px 1px 2px 0px rgba(10, 13, 18, 0.05),
+    0px 1px 2px 0px rgba(10, 13, 18, 0.05),
     inset 0px -2px 0px 0px rgba(10, 13, 18, 0.05),
     inset 0px 0px 0px 1px rgba(10, 13, 18, 0.18);
   --effect-shadows-shadow-sm:

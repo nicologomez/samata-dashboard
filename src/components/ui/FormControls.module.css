@@ -1,59 +1,23 @@
 .stack {
   display: grid;
-  gap: 6px;
+  gap: var(--space-sm);
   color: var(--text-primary);
 }
-.stack input,
-.stack select {
+
+.stack input {
   min-height: 40px;
-  padding: 8px 12px;
+  padding: var(--space-md) var(--space-xl);
   border-radius: var(--radius-md);
   background: var(--input-boxes-bg);
-  border: 1px solid var(--input-boxes-border);
+  border: var(--stroke-sm) solid var(--input-boxes-border);
   color: var(--input-boxes-content);
 }
-.stack input:focus-visible,
-.stack select:focus-visible {
-  outline: 2px solid var(--input-boxes-border-focus);
+
+.stack input:focus-visible {
+  outline: var(--stroke-xl) solid var(--input-boxes-border-focus);
 }
-.stack input:disabled,
-.stack select:disabled {
+
+.stack input:disabled {
   background: var(--input-boxes-bg-disabled);
   color: var(--input-boxes-content-disabled);
-}
-.choice {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
-.choice input {
-  accent-color: var(--bg-brand);
-  width: 16px;
-  height: 16px;
-}
-.choice input[role="switch"] {
-  appearance: none;
-  width: 32px;
-  height: 18px;
-  border-radius: 999px;
-  background: var(--border-default);
-  position: relative;
-}
-.choice input[role="switch"]::before {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 2px;
-  left: 3px;
-  background: white;
-  border-radius: 50%;
-  transition: transform 120ms;
-}
-.choice input[role="switch"]:checked {
-  background: var(--bg-brand);
-}
-.choice input[role="switch"]:checked::before {
-  transform: translateX(14px);
 }

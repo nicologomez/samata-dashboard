@@ -28,11 +28,3 @@
   flex: 1;
   min-width: 0;
 }
-
-.badge {
-  flex: none;
-  padding: var(--space-2px) var(--space-sm);
-  border-radius: var(--radius-full);
-  background: var(--bg-primary);
-  color: var(--text-brand-dark);
-}

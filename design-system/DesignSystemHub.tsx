@@ -1,238 +1,160 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import {
-  designSystemEntries,
-  layerTabs,
-  type HealthStatus,
-  type LayerId,
-  type PortalScope,
-} from "./catalog";
-import { AuditInventoryList } from "./AuditInventoryList";
-import { FeaturesTemplatesSection } from "./FeaturesTemplatesSection";
-import { PatternsSection } from "./PatternsSection";
-import { PrimitivesSection } from "./PrimitivesSection";
-import { TokensSection } from "./TokensSection";
+import { tabSpecs, type SectionTabId } from "./registry";
+import { FoundationsView } from "./FoundationsView";
+import { OrganismsTemplatesView } from "./OrganismsTemplatesView";
+import { OverviewSection } from "./OverviewSection";
+import { PatternsView } from "./PatternsView";
+import { PrimitivesView } from "./PrimitivesView";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import styles from "./DesignSystemHub.module.css";
 
-type ScopeFilter = "all" | "universal" | "employer-exclusive" | "attention";
-
-function matchesScope(
-  scope: PortalScope,
-  status: HealthStatus,
-  filter: ScopeFilter,
-): boolean {
-  if (filter === "all") return true;
-  if (filter === "universal") return scope === "universal";
-  if (filter === "employer-exclusive") {
-    return scope === "employer-exclusive" || scope === "shared-chrome";
-  }
-  return status === "needs-fix" || status === "refactor" || status === "unused";
-}
-
-/** Interactive Samata Design System source of truth organized by technical layers with sidebar category & scope filters. */
+/** IBM / Atlassian-inspired Design System Hub organizing Subatomic through Templates into single-focus pages. */
 export function DesignSystemHub() {
-  const [activeLayer, setActiveLayer] = useState<LayerId>("tokens");
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [scopeFilter, setScopeFilter] = useState<ScopeFilter>("all");
-  const [previewDark, setPreviewDark] = useState(false);
+  const [activeTab, setActiveTab] = useState<SectionTabId>("overview");
+  const [activeItemId, setActiveItemId] = useState<string>(
+    tabSpecs[0].items[0].id,
+  );
+  const [darkTheme, setDarkTheme] = useState(false);
 
   const currentTab =
-    layerTabs.find((tab) => tab.id === activeLayer) ?? layerTabs[0];
+    tabSpecs.find((t) => t.id === activeTab) ?? tabSpecs[0];
+  const currentItem =
+    currentTab.items.find((i) => i.id === activeItemId) ?? currentTab.items[0];
 
-  function selectLayer(layerId: LayerId) {
-    setActiveLayer(layerId);
-    setActiveCategory(null);
+  function selectTab(tabId: SectionTabId) {
+    const target = tabSpecs.find((t) => t.id === tabId);
+    setActiveTab(tabId);
+    if (target?.items[0]) {
+      setActiveItemId(target.items[0].id);
+    }
   }
 
-  const visibleEntries = designSystemEntries.filter((entry) => {
-    if (entry.layer !== activeLayer) return false;
-    if (activeCategory && entry.category !== activeCategory) return false;
-    return matchesScope(entry.scope, entry.status, scopeFilter);
-  });
-
   return (
-    <div
-      className={styles.hub}
-      data-theme={previewDark ? "dark" : undefined}
-    >
-      <div className={styles.inner}>
-        <header className={styles.topbar}>
-          <div className={styles.brandTitle}>
-            <div className={styles.titleLine}>
-              <h1 className="type-heading-h3">Samata Design System</h1>
+    <div className={styles.shell} data-theme={darkTheme ? "dark" : undefined}>
+      <header className={styles.topbar}>
+        <div className={styles.topbarInner}>
+          <div className={styles.brandRow}>
+            <div className={styles.brandCopy}>
+              <h1 className="type-heading-h4">Samata Design System</h1>
               <Pill variant="hash">SOURCE OF TRUTH</Pill>
+              <span className="type-paragraph-small">
+                Organized by technical architecture layer
+              </span>
             </div>
-            <p className="type-paragraph-small">
-              Technical frontend catalog mapped to Atomic Design — live
-              specimens, ownership rules, and engineering health audit.
-            </p>
+
+            <div className={styles.topActions}>
+              <Button
+                variant="secondary"
+                size="xs"
+                onClick={() => setDarkTheme((d) => !d)}
+              >
+                {darkTheme ? "Light Theme" : "Dark Theme"}
+              </Button>
+              <Button variant="primary" size="xs" href="/">
+                Back to App
+              </Button>
+            </div>
           </div>
 
-          <div className={styles.topbarActions}>
-            <Button
-              variant="secondary"
-              size="xs"
-              onClick={() => setPreviewDark((d) => !d)}
-            >
-              {previewDark ? "Switch to Light Theme" : "Preview Dark Theme"}
-            </Button>
-            <Button variant="primary" size="xs" href="/">
-              Back to Employer App
-            </Button>
-          </div>
-        </header>
-
-        {/* Top Technical Layer Switcher Tabs */}
-        <nav
-          aria-label="Architecture layers"
-          role="tablist"
-          className={styles.tabBar}
-        >
-          {layerTabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              className={styles.layerTab}
-              aria-selected={activeLayer === tab.id}
-              onClick={() => selectLayer(tab.id)}
-            >
-              <strong className="type-label-medium-medium">
-                {tab.technicalName}
-              </strong>
-              <small className="type-paragraph-xsmall">
-                {tab.atomicEquiv} · {tab.folderPath}
-              </small>
-            </button>
-          ))}
-        </nav>
-
-        <div className={styles.workspace}>
-          {/* Left Sticky Category & Scope Sidebar */}
-          <aside className={styles.sidebar} aria-label="Design system filters">
-            <div className={styles.sideGroup}>
-              <span
-                className={`${styles.sideGroupTitle} type-overlines-small`}
+          <nav
+            aria-label="Design system sections"
+            role="tablist"
+            className={styles.tabs}
+          >
+            {tabSpecs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                className={styles.tabBtn}
+                onClick={() => selectTab(tab.id)}
               >
-                Categories
-              </span>
-              <div className={styles.sideNavList}>
-                <button
-                  type="button"
-                  className={`${styles.sideBtn} type-label-medium-small`}
-                  data-active={activeCategory === null ? "true" : undefined}
-                  onClick={() => setActiveCategory(null)}
-                >
-                  All in {currentTab.technicalName}
-                </button>
-                {currentTab.categories.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    className={`${styles.sideBtn} type-label-medium-small`}
-                    data-active={
-                      activeCategory === category ? "true" : undefined
-                    }
-                    onClick={() => setActiveCategory(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.sideGroup}>
-              <span
-                className={`${styles.sideGroupTitle} type-overlines-small`}
-              >
-                Portal Ownership Filter
-              </span>
-              <div className={styles.sideNavList}>
-                {(
-                  [
-                    { id: "all", label: "All Scopes" },
-                    { id: "universal", label: "Universal (All Portals)" },
-                    { id: "employer-exclusive", label: "Employer-Exclusive" },
-                    { id: "attention", label: "Needs Fix / Scrap" },
-                  ] as const
-                ).map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`${styles.sideBtn} type-label-medium-small`}
-                    data-active={scopeFilter === item.id ? "true" : undefined}
-                    onClick={() => setScopeFilter(item.id)}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.sideGroup}>
-              <span
-                className={`${styles.sideGroupTitle} type-overlines-small`}
-              >
-                Live App Routes
-              </span>
-              <div className={styles.sideNavList}>
-                <Link
-                  href="/"
-                  className={`${styles.sideBtn} type-label-medium-small`}
-                >
-                  / (Employer Home)
-                </Link>
-                <Link
-                  href="/analytics"
-                  className={`${styles.sideBtn} type-label-medium-small`}
-                >
-                  /analytics (Analytics)
-                </Link>
-                <Link
-                  href="/employees"
-                  className={`${styles.sideBtn} type-label-medium-small`}
-                >
-                  /employees (Employees)
-                </Link>
-              </div>
-            </div>
-          </aside>
-
-          {/* Main Stage */}
-          <main className={styles.content}>
-            <div className={styles.layerIntro}>
-              <div className={styles.layerIntroText}>
-                <h2 className="type-heading-h4">{currentTab.technicalName}</h2>
-                <p className="type-paragraph-small">{currentTab.description}</p>
-              </div>
-              <Pill variant="hash">
-                {currentTab.atomicEquiv} · {currentTab.folderPath}
-              </Pill>
-            </div>
-
-            {activeLayer === "tokens" && (
-              <TokensSection activeCategory={activeCategory} />
-            )}
-
-            {activeLayer === "primitives" && (
-              <PrimitivesSection activeCategory={activeCategory} />
-            )}
-
-            {activeLayer === "patterns" && (
-              <PatternsSection activeCategory={activeCategory} />
-            )}
-
-            {activeLayer === "templates" && (
-              <FeaturesTemplatesSection activeCategory={activeCategory} />
-            )}
-
-            <AuditInventoryList entries={visibleEntries} />
-          </main>
+                <strong className="type-label-medium-medium">
+                  {tab.label}
+                </strong>
+                <small className="type-paragraph-xsmall">{tab.subtitle}</small>
+              </button>
+            ))}
+          </nav>
         </div>
+      </header>
+
+      <div className={styles.body}>
+        <aside className={styles.rail} aria-label="Section navigation">
+          <span className={`${styles.railHeading} type-overlines-small`}>
+            {currentTab.label}
+          </span>
+          <nav className={styles.railNav}>
+            {currentTab.items.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`${styles.railBtn} type-label-medium-small`}
+                data-active={currentItem.id === item.id ? "true" : undefined}
+                onClick={() => setActiveItemId(item.id)}
+              >
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </nav>
+        </aside>
+
+        <main className={styles.main}>
+          <section className={styles.docHeader}>
+            <div className={styles.docHeaderTop}>
+              <div className={styles.docMeta}>
+                <h2 className="type-heading-h3">{currentItem.label}</h2>
+                <Pill variant="hash">{currentItem.atomic}</Pill>
+                <Pill
+                  variant="display"
+                  tone={
+                    currentItem.scope === "Universal (All Portals)"
+                      ? "success"
+                      : currentItem.scope === "Shared Portal Chrome"
+                        ? "info"
+                        : "warning"
+                  }
+                  showLeftIcon
+                  showRightIcon={false}
+                >
+                  {currentItem.scope}
+                </Pill>
+              </div>
+              <code className={`${styles.codePath} type-paragraph-xsmall`}>
+                {currentItem.path}
+              </code>
+            </div>
+
+            <p className={`${styles.docSummary} type-paragraph-small`}>
+              {currentItem.summary}
+            </p>
+
+            <div className={`${styles.docRuleBox} type-paragraph-xsmall`}>
+              <strong>When to use:</strong>
+              {currentItem.whenToUse}
+            </div>
+          </section>
+
+          {activeTab === "overview" && (
+            <OverviewSection itemId={currentItem.id} />
+          )}
+          {activeTab === "foundations" && (
+            <FoundationsView itemId={currentItem.id} />
+          )}
+          {activeTab === "primitives" && (
+            <PrimitivesView itemId={currentItem.id} />
+          )}
+          {activeTab === "patterns" && (
+            <PatternsView itemId={currentItem.id} />
+          )}
+          {(activeTab === "organisms" || activeTab === "templates") && (
+            <OrganismsTemplatesView itemId={currentItem.id} />
+          )}
+        </main>
       </div>
     </div>
   );

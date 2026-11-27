@@ -9,7 +9,6 @@ export const iconNames = [
   "integrations",
   "receipt-check",
   "help-circle",
-  "settings",
   "settings-04",
   "sparkles",
   "clipboard",

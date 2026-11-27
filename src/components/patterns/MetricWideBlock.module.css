@@ -1,9 +1,10 @@
 .block {
   min-height: 228px;
+  padding: var(--space-4xl);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-5xl);
+  justify-content: flex-start;
+  gap: var(--space-6xl);
 }
 
 .header {
@@ -27,7 +28,7 @@
 .columns {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-5xl);
+  gap: var(--space-6xl);
 }
 
 .column {
@@ -42,7 +43,7 @@
 .column + .column::before {
   content: "";
   position: absolute;
-  left: calc(var(--space-2xl) * -1);
+  left: calc(var(--space-3xl) * -1);
   top: 0;
   bottom: 0;
   width: var(--stroke-sm);

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Icon, type IconName } from "./Icon";
+import { Pill } from "./Pill";
 import styles from "./NavButton.module.css";
 
 type Props = {
@@ -16,7 +17,7 @@ type Props = {
   className?: string;
 };
 
-/** Sidebar route link with active state, optional icon, and optional badge. */
+/** Sidebar route link with active state, optional icon, and optional Pill badge. */
 export function NavButton({
   href,
   icon,
@@ -38,9 +39,14 @@ export function NavButton({
       {icon && <Icon name={icon} size={20} className={styles.icon} />}
       <span className={styles.label}>{children ?? label}</span>
       {badge !== undefined && (
-        <span className={`${styles.badge} type-label-medium-xsmall`}>
+        <Pill
+          variant="display"
+          tone="plain"
+          showLeftIcon={false}
+          showRightIcon={false}
+        >
           {badge}
-        </span>
+        </Pill>
       )}
     </Link>
   );

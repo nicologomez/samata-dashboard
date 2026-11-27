@@ -1,29 +1,46 @@
 "use client";
+
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { employerNav } from "@/config/navigation";
-import type { EmployerProfile } from "@/types/employer";
-import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import { Avatar } from "@/components/ui/Avatar";
-import { AddEmployeeDialog } from "@/features/employees/AddEmployeeDialog";
+import { Button } from "@/components/ui/Button";
+import { Icon, type IconName } from "@/components/ui/Icon";
+import { SearchInput } from "@/components/ui/SearchInput";
+import type { PortalNavItem } from "./Sidebar";
 import styles from "./Header.module.css";
 
-export function Header({
-  profile,
-  onOpenMenu,
-}: {
-  profile: EmployerProfile;
+export type PortalProfile = {
+  readonly user: string;
+  readonly role: string;
+  readonly menuNote?: string;
+};
+
+type Props = {
+  navItems: readonly Pick<PortalNavItem, "href" | "label">[];
+  profile: PortalProfile;
+  primaryAction?: {
+    readonly label: string;
+    readonly icon?: IconName;
+    readonly onClick: () => void;
+  };
   onOpenMenu: () => void;
-}) {
+};
+
+/** Portal-agnostic sticky header with route title, search drawer, primary CTA, and profile menu. */
+export function Header({
+  navItems,
+  profile,
+  primaryAction,
+  onOpenMenu,
+}: Props) {
   const pathname = usePathname();
   const pageTitle =
-    employerNav.find((item) => item.href === pathname)?.label ??
+    navItems.find((item) => item.href === pathname)?.label ??
     (pathname === "/inbox" ? "Inbox" : "Home");
-  const [inviteOpen, setInviteOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [profileOpen, setProfileOpen] = useState(false);
+
   return (
     <>
       <header className={styles.header}>
@@ -38,16 +55,30 @@ export function Header({
           </button>
           <h1 className="type-heading-h5">{pageTitle}</h1>
         </div>
+
         <div className={styles.actions}>
-          <Button onClick={() => setInviteOpen(true)}>Add Employees</Button>
+          {primaryAction && (
+            <Button
+              size="sm"
+              showLeftIcon={Boolean(primaryAction.icon)}
+              leftIcon={primaryAction.icon}
+              onClick={primaryAction.onClick}
+            >
+              {primaryAction.label}
+            </Button>
+          )}
           <Button
             variant="secondary"
+            size="sm"
+            showLeftIcon
+            leftIcon="search"
             onClick={() => setSearchOpen((v) => !v)}
             aria-expanded={searchOpen}
-            aria-controls="employer-search"
+            aria-controls="portal-search"
           >
-            <Icon name="search" size={20} /> Search
+            Search
           </Button>
+
           <div className={styles.profile}>
             <button
               type="button"
@@ -65,7 +96,9 @@ export function Header({
             </button>
             {profileOpen && (
               <div className={styles.popup}>
-                <p className="type-paragraph-small">Employer demo profile</p>
+                <p className="type-paragraph-small">
+                  {profile.menuNote ?? "Account profile"}
+                </p>
                 <button
                   className="type-label-medium-small"
                   type="button"
@@ -78,29 +111,23 @@ export function Header({
           </div>
         </div>
       </header>
+
       {searchOpen && (
-        <div id="employer-search" className={styles.search}>
-          <label className="type-label-medium-small" htmlFor="dashboard-search">
-            Search dashboard (demo)
-          </label>
-          <input
-            id="dashboard-search"
-            className="type-paragraph-small"
+        <div id="portal-search" className={styles.search}>
+          <SearchInput
+            label="Search workspace"
+            placeholder="Try adoption or sessions"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Try adoption or sessions"
+            className={styles.searchBox}
           />
           <p className="type-paragraph-xsmall" role="status">
             {query
-              ? `Demo search term: ${query}`
-              : "Search is local to this demo."}
+              ? `Search term: ${query}`
+              : "Search is scoped to local demo data."}
           </p>
         </div>
       )}
-      <AddEmployeeDialog
-        open={inviteOpen}
-        onClose={() => setInviteOpen(false)}
-      />
     </>
   );
 }

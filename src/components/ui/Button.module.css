@@ -288,7 +288,23 @@
 
 .button[data-appearance="basic"][data-state="transparent"] {
   --button-background: transparent;
-  --button-foreground: var(--text-secondary);
+  --button-foreground: var(--interactive-primary);
+}
+
+.button[data-appearance="basic"][data-state="transparent"]:not(:disabled):is(
+    :hover,
+    [data-state="hover"]
+  ) {
+  --button-background: transparent;
+  --button-foreground: var(--interactive-primary-hover);
+}
+
+.button[data-appearance="basic"][data-state="transparent"]:not(:disabled):is(
+    :active,
+    [data-state="pressed"]
+  ) {
+  --button-background: transparent;
+  --button-foreground: var(--interactive-primary-pressed);
 }
 
 /* State: Focus */

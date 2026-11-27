@@ -10,31 +10,40 @@
 
 .scrollArea {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
-.table {
+.table,
+.thead,
+.tbody {
   width: 100%;
-  min-width: 960px;
-  border-collapse: collapse;
-  table-layout: fixed;
+  min-width: 0;
 }
 
-.table thead tr {
-  height: 40px;
+.headerRow,
+.bodyRow {
+  display: grid;
+  grid-template-columns: var(--table-cols);
+  align-items: stretch;
+  width: 100%;
+}
+
+.headerRow {
+  min-height: 40px;
   background: var(--bg-primary-brand);
 }
 
-.table thead th {
+.th {
+  display: flex;
+  align-items: center;
+  min-width: 0;
   padding: var(--space-lg) var(--space-2xl);
   border-bottom: var(--stroke-sm) solid var(--border-default);
   text-align: left;
   color: var(--text-secondary);
-  white-space: nowrap;
 }
 
-.table thead th + th {
+.th + .th {
   border-left: var(--stroke-sm) solid var(--border-default);
 }
 
@@ -48,11 +57,27 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
+  max-width: 100%;
   padding: 0;
   border: 0;
   background: transparent;
   color: inherit;
+  text-align: left;
   cursor: pointer;
+}
+
+.sortChevron {
+  flex: none;
+  color: var(--interactive-primary);
+  transition: color 120ms ease;
+}
+
+.sortTrigger:hover .sortChevron {
+  color: var(--interactive-primary-hover);
+}
+
+.sortTrigger:active .sortChevron {
+  color: var(--interactive-primary-pressed);
 }
 
 .sortTrigger:focus-visible {
@@ -61,34 +86,33 @@
   border-radius: var(--radius-xxs);
 }
 
-.table tbody tr {
-  height: 60px;
+.bodyRow {
+  min-height: 60px;
 }
 
-.table tbody tr[data-selected="true"] {
+.bodyRow[data-selected="true"] {
   background: var(--bg-primary-brand);
 }
 
-.table tbody td {
+.td {
+  display: flex;
+  align-items: center;
+  min-width: 0;
   padding: var(--space-xl) var(--space-2xl);
   border-bottom: var(--stroke-sm) solid var(--border-subtle);
-  vertical-align: middle;
   color: var(--text-secondary);
 }
 
-.table tbody td + td {
+.td + .td {
   border-left: var(--stroke-sm) solid var(--border-subtle);
 }
 
-.table th.checkCol,
-.table td.checkCol,
-.table th.actionCol,
-.table td.actionCol {
-  width: 48px;
-  min-width: 48px;
-  max-width: 48px;
+.th.checkCol,
+.td.checkCol,
+.th.actionCol,
+.td.actionCol {
+  justify-content: center;
   padding: 0;
-  text-align: center;
 }
 
 .centerCell {
@@ -97,7 +121,6 @@
   justify-content: center;
   width: 48px;
   height: 100%;
-  margin-inline: auto;
 }
 
 .footer {
@@ -152,12 +175,20 @@
   border: 0;
   border-left: var(--stroke-sm) solid var(--border-default);
   background: transparent;
-  color: var(--icon-primary);
+  color: var(--interactive-primary);
   cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
 }
 
 .pagerBtn:hover {
   background: var(--interactive-tertiary-hover);
+  color: var(--interactive-primary-hover);
+}
+
+.pagerBtn:active {
+  color: var(--interactive-primary-pressed);
 }
 
 .pagerBtn:focus-visible {
@@ -175,4 +206,25 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (max-width: 1380px) {
+  .th {
+    padding: var(--space-lg) var(--space-lg);
+  }
+
+  .td {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+@media (max-width: 1080px) {
+  .scrollArea {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    min-width: 820px;
+  }
 }

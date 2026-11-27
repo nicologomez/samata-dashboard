@@ -13,7 +13,12 @@ type Props = {
 /** Wide 4-column KPI summary banner composing Card, Badge, and Icon. */
 export function MetricWideBlock({ heading, subtitle, metrics }: Props) {
   return (
-    <Card surface="gradient" elevation="sm" className={styles.block}>
+    <Card
+      surface="gradient"
+      padding="none"
+      elevation="sm"
+      className={styles.block}
+    >
       <div className={styles.header}>
         <h3 className="type-heading-h5">{heading}</h3>
         {subtitle && (
