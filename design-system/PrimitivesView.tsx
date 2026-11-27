@@ -13,6 +13,7 @@ import { SearchInput } from "@/components/ui/SearchInput";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Select } from "@/components/ui/Select";
 import { TileButton } from "@/components/ui/TileButton";
+import { Toggle } from "@/components/ui/Toggle";
 import styles from "./DesignSystemHub.module.css";
 
 type Props = {
@@ -22,6 +23,7 @@ type Props = {
 /** Renders complete interactive specimens and property contracts for each single UI Primitive (Atom). */
 export function PrimitivesView({ itemId }: Props) {
   const [checkLive, setCheckLive] = useState(true);
+  const [toggleLive, setToggleLive] = useState(true);
   const [pillLeft, setPillLeft] = useState(true);
   const [pillRight, setPillRight] = useState(false);
   const [pillText, setPillText] = useState(true);
@@ -520,7 +522,7 @@ export function PrimitivesView({ itemId }: Props) {
         </div>
       );
 
-    default:
+    case "p-tilebutton":
       return (
         <div className={styles.stage}>
           <h3 className={`${styles.stageSubhead} type-heading-h6`}>
@@ -538,6 +540,37 @@ export function PrimitivesView({ itemId }: Props) {
               description="Clean compact action tile"
               onClick={() => {}}
             />
+          </div>
+        </div>
+      );
+
+    default:
+      return (
+        <div className={styles.stage}>
+          <h3 className={`${styles.stageSubhead} type-heading-h6`}>
+            Toggle Switch States (Interactive + Disabled)
+          </h3>
+          <div className={styles.canvasLight}>
+            <div className={styles.flexWrap}>
+              <div className={styles.stackMd}>
+                <Toggle
+                  checked={toggleLive}
+                  onCheckedChange={setToggleLive}
+                  label="Interactive switch"
+                />
+                <code className="type-paragraph-xsmall">
+                  Interactive ({toggleLive ? "On" : "Off"})
+                </code>
+              </div>
+              <div className={styles.stackMd}>
+                <Toggle defaultChecked={false} label="Default unchecked" />
+                <code className="type-paragraph-xsmall">Unchecked</code>
+              </div>
+              <div className={styles.stackMd}>
+                <Toggle defaultChecked disabled label="Disabled checked" />
+                <code className="type-paragraph-xsmall">Disabled</code>
+              </div>
+            </div>
           </div>
         </div>
       );

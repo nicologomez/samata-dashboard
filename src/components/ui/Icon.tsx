@@ -42,6 +42,16 @@ export const iconNames = [
   "pie",
   "calendar",
   "bookmark",
+  "check-circle",
+  "lock",
+  "doc-fill",
+  "download-01",
+  "calendar-plus-01",
+  "check-verified-01",
+  "file-02",
+  "file-06",
+  "message-dots-square",
+  "book-solid",
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

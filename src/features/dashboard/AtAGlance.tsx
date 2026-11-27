@@ -10,23 +10,29 @@ import { MetricWideBlock } from "@/components/patterns/MetricWideBlock";
 import styles from "./AtAGlance.module.css";
 
 type Props = {
-  metricsByPeriod: Record<Period, readonly Metric[]>;
+  metricsByPeriod?: Record<Period, readonly Metric[]>;
+  metrics?: readonly Metric[];
   title?: string;
   layout?: "strip" | "wide";
   heading?: string;
   subtitle?: string;
+  showPeriodSelect?: boolean;
 };
 
 /** Universal KPI summary block supporting multi-card strip or wide banner layouts. */
 export function AtAGlance({
   metricsByPeriod,
+  metrics: staticMetrics,
   title = "At a Glance",
   layout = "strip",
   heading = "Benefit Analytics",
   subtitle,
+  showPeriodSelect = true,
 }: Props) {
   const [period, setPeriod] = useState<Period>("monthly");
-  const metrics = getMetricsForPeriod(metricsByPeriod, period);
+  const metrics =
+    staticMetrics ??
+    (metricsByPeriod ? getMetricsForPeriod(metricsByPeriod, period) : []);
 
   return (
     <section aria-labelledby="glance-heading" className={styles.section}>
@@ -35,11 +41,13 @@ export function AtAGlance({
         icon="sparkles"
         title={title}
         action={
-          <PeriodSelect
-            label={`${title} period`}
-            value={period}
-            onChange={setPeriod}
-          />
+          showPeriodSelect && metricsByPeriod ? (
+            <PeriodSelect
+              label={`${title} period`}
+              value={period}
+              onChange={setPeriod}
+            />
+          ) : undefined
         }
       />
       {layout === "wide" ? (

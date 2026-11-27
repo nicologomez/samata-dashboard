@@ -1,0 +1,139 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-color: var(--border-subtle);
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-3xl);
+}
+
+.panelTitle {
+  color: var(--text-primary);
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+
+.metaBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+  min-width: 0;
+}
+
+.metaLabel {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.metaValue {
+  color: var(--text-primary);
+}
+
+.metaSub {
+  color: var(--text-secondary);
+}
+
+.statusBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.successIcon {
+  color: var(--icon-success);
+  flex-shrink: 0;
+  margin-top: var(--space-xxs);
+}
+
+.warningIcon {
+  color: var(--icon-warning);
+  flex-shrink: 0;
+  margin-top: var(--space-xxs);
+}
+
+.statusText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+  min-width: 0;
+}
+
+.detailsDock {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--stroke-sm) solid var(--border-default);
+  background: var(--bg-primary);
+}
+
+.detailsHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 85px;
+  gap: var(--space-xl);
+  padding: var(--space-lg) var(--space-3xl);
+  background: var(--bg-primary-brand);
+  border-bottom: var(--stroke-sm) solid var(--border-default);
+}
+
+.detailsCol {
+  display: block;
+}
+
+.deltaList {
+  display: flex;
+  flex-direction: column;
+  max-height: 215px;
+  overflow-y: auto;
+  padding: var(--space-lg) var(--space-3xl);
+}
+
+.deltaRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 85px;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  padding-block: var(--space-lg);
+}
+
+.deltaRow + .deltaRow {
+  border-top: var(--stroke-sm) solid var(--border-subtle);
+}
+
+.deltaEmployee {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+  min-width: 0;
+}
+
+.deltaName {
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deltaBadgeCol {
+  display: flex;
+  align-items: flex-start;
+}
+
+.emptyDeltas {
+  padding-block: var(--space-xl);
+  color: var(--text-secondary);
+}

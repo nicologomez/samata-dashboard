@@ -1,0 +1,90 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+  height: 100%;
+}
+
+.banner {
+  flex: 1;
+  min-height: 228px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+  padding: var(--space-4xl);
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.heading {
+  color: var(--text-primary);
+}
+
+.subtitle {
+  max-width: 311px;
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+.searchBar {
+  width: 100%;
+  height: 40px;
+  padding: var(--space-lg) var(--space-2xl);
+  border-width: var(--stroke-l);
+}
+
+.shortcuts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+}
+
+.shortcutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border: var(--stroke-sm) solid var(--input-boxes-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--interactive-primary);
+  cursor: pointer;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.shortcutBtn:hover {
+  background: var(--bg-primary);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.shortcutBtn:focus-visible {
+  outline: var(--stroke-xl) solid var(--border-focus);
+  outline-offset: var(--space-2px);
+}
+
+.shortcutIcon {
+  color: var(--icon-primary);
+}
+
+@media (max-width: 600px) {
+  .banner {
+    padding: var(--space-3xl);
+  }
+
+  .subtitle {
+    text-align: left;
+  }
+}

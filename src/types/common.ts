@@ -12,6 +12,7 @@ export interface Metric {
   readonly id: string;
   readonly label: string;
   readonly value: number;
+  readonly displayValue?: string;
   readonly unit?: string;
   readonly change?: number;
   readonly tone: Tone;

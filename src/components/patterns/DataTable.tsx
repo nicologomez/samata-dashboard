@@ -51,6 +51,9 @@ type Props<T, K extends string> = {
   renderCell: (row: T, columnKey: K) => ReactNode;
   selectable?: boolean;
   hasRowAction?: boolean;
+  actionColumnWidth?: string;
+  showActionHeaderLabel?: boolean;
+  actionHeaderLabel?: string;
   renderRowAction?: (row: T) => ReactNode;
   footerSummary?: string;
   showAllLabel?: string;
@@ -70,6 +73,9 @@ export function DataTable<T, K extends string>({
   renderCell,
   selectable = false,
   hasRowAction = false,
+  actionColumnWidth = "48px",
+  showActionHeaderLabel = false,
+  actionHeaderLabel = "Actions",
   renderRowAction,
   footerSummary,
   showAllLabel,
@@ -106,7 +112,7 @@ export function DataTable<T, K extends string>({
       if (col.weight !== undefined) return `minmax(0, ${col.weight}fr)`;
       return col.width ? col.width : "minmax(0, 1fr)";
     }),
-    hasRowAction ? "48px" : null,
+    hasRowAction ? actionColumnWidth : null,
   ]
     .filter(Boolean)
     .join(" ");
@@ -204,8 +210,19 @@ export function DataTable<T, K extends string>({
                 );
               })}
               {hasRowAction && (
-                <div role="columnheader" className={`${styles.th} ${styles.actionCol}`}>
-                  <span className={styles.visuallyHidden}>Actions</span>
+                <div
+                  role="columnheader"
+                  className={`${styles.th} ${
+                    showActionHeaderLabel ? styles.actionHeaderLabeled : styles.actionCol
+                  }`}
+                >
+                  {showActionHeaderLabel ? (
+                    <span className={`${styles.headerLabel} type-label-medium-small`}>
+                      {actionHeaderLabel}
+                    </span>
+                  ) : (
+                    <span className={styles.visuallyHidden}>{actionHeaderLabel}</span>
+                  )}
                 </div>
               )}
             </div>

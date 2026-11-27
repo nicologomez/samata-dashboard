@@ -18,9 +18,16 @@ import { CareAccess } from "@/features/dashboard/CareAccess";
 import { EmployeeParticipation } from "@/features/dashboard/EmployeeParticipation";
 import { QuickActions } from "@/features/dashboard/QuickActions";
 import { TaskList } from "@/features/dashboard/TaskList";
+import { employerBillingFixture } from "@/data/employerBilling";
+import { employerIntegrationsFixture } from "@/data/employerIntegrations";
+import { employerSupportFixture } from "@/data/employerSupport";
 import { AccessSummary } from "@/features/employees/AccessSummary";
 import { AddEmployeeDialog } from "@/features/employees/AddEmployeeDialog";
 import { EmployeeList } from "@/features/employees/EmployeeList";
+import { BillingOverviewCard } from "@/features/billing/BillingOverviewCard";
+import { SeatUtilizationCard } from "@/features/billing/SeatUtilizationCard";
+import { IntegrationConnectionCard } from "@/features/integrations/IntegrationConnectionCard";
+import { StatusHealthPanel } from "@/features/support/SupportHealthRails";
 import styles from "./DesignSystemHub.module.css";
 
 type Props = {
@@ -219,6 +226,48 @@ export function OrganismsTemplatesView({ itemId }: Props) {
         </div>
       );
 
+    case "o-integrations":
+      return (
+        <div className={styles.stage}>
+          <h3 className={`${styles.stageSubhead} type-heading-h6`}>
+            Integration Connection Card (Reused for HRIS &amp; SSO)
+          </h3>
+          <div className={styles.gridCards}>
+            {employerIntegrationsFixture.connections.map((conn) => (
+              <IntegrationConnectionCard key={conn.id} data={conn} />
+            ))}
+          </div>
+        </div>
+      );
+
+    case "o-billing":
+      return (
+        <div className={styles.stage}>
+          <h3 className={`${styles.stageSubhead} type-heading-h6`}>
+            Billing Rail Cards (Overview &amp; Seat Utilization)
+          </h3>
+          <div className={styles.gridCards}>
+            <BillingOverviewCard data={employerBillingFixture.overview} />
+            <SeatUtilizationCard data={employerBillingFixture.seatUtilization} />
+          </div>
+        </div>
+      );
+
+    case "o-support":
+      return (
+        <div className={styles.stage}>
+          <h3 className={`${styles.stageSubhead} type-heading-h6`}>
+            Support Right-Rail Health Status Panel
+          </h3>
+          <div className={styles.gridCards}>
+            <StatusHealthPanel
+              statuses={employerSupportFixture.systemStatuses}
+              lastCheckedLabel={employerSupportFixture.lastCheckedLabel}
+            />
+          </div>
+        </div>
+      );
+
     case "t-built":
       return (
         <div className={styles.stage}>
@@ -265,6 +314,45 @@ export function OrganismsTemplatesView({ itemId }: Props) {
                 Open /employees
               </Button>
             </article>
+            <article className={styles.archCard}>
+              <Pill variant="hash">/integrations</Pill>
+              <strong className="type-label-medium-medium">
+                EmployerIntegrationsView
+              </strong>
+              <p className="type-paragraph-xsmall">
+                4 bands: AtAGlance + QuickActions, 2 layered connection shelves,
+                ActivityLog + LatestLog rail, and AvailableIntegrations 3-col tabs.
+              </p>
+              <Button variant="secondary" size="xs" href="/integrations">
+                Open /integrations
+              </Button>
+            </article>
+            <article className={styles.archCard}>
+              <Pill variant="hash">/billing</Pill>
+              <strong className="type-label-medium-medium">
+                EmployerBillingView
+              </strong>
+              <p className="type-paragraph-xsmall">
+                Band 1: AtAGlance + Overview (270px). Band 2: SpendTrend +
+                SeatUtilization (270px). Band 3: Tabbed Invoice History DataTable.
+              </p>
+              <Button variant="secondary" size="xs" href="/billing">
+                Open /billing
+              </Button>
+            </article>
+            <article className={styles.archCard}>
+              <Pill variant="hash">/support</Pill>
+              <strong className="type-label-medium-medium">
+                EmployerSupportView
+              </strong>
+              <p className="type-paragraph-xsmall">
+                Band 1: Search Hero + CSM Rail. Band 2: Tickets DataTable +
+                Status/Account Health. Band 3: Searchable FAQ + Resources Rail.
+              </p>
+              <Button variant="secondary" size="xs" href="/support">
+                Open /support
+              </Button>
+            </article>
           </div>
         </div>
       );
@@ -277,24 +365,11 @@ export function OrganismsTemplatesView({ itemId }: Props) {
           </h3>
           <div className={styles.gridCards}>
             <article className={styles.archCard}>
-              <Pill variant="hash">/billing</Pill>
+              <Pill variant="hash">/inbox · /settings</Pill>
               <p className="type-paragraph-small">
-                Reuse <code>AtAGlance layout=&quot;wide&quot;</code> +{" "}
-                <code>DataTable</code> (Invoices) + <code>ActionBanner</code>.
-              </p>
-            </article>
-            <article className={styles.archCard}>
-              <Pill variant="hash">/integrations</Pill>
-              <p className="type-paragraph-small">
-                Reuse <code>SearchInput</code> + <code>Card</code> +{" "}
-                <code>Pill</code> (Connected / Pending) + <code>TileButton</code>.
-              </p>
-            </article>
-            <article className={styles.archCard}>
-              <Pill variant="hash">/inbox · /settings · /support</Pill>
-              <p className="type-paragraph-small">
-                Follow <code>tutorials/README-5STEPS.md</code>; wire role-neutral{" "}
-                <code>PortalShell</code> for upcoming Employee and Therapist portals.
+                Follow <code>tutorials/README-5STEPS.md</code>; reuse{" "}
+                <code>Toggle</code> and role-neutral <code>PortalShell</code>{" "}
+                for upcoming Employee and Therapist portals.
               </p>
             </article>
           </div>

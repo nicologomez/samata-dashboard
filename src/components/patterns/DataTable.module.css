@@ -115,12 +115,22 @@
   padding: 0;
 }
 
+.th.actionHeaderLabeled {
+  justify-content: flex-start;
+}
+
 .centerCell {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 100%;
+}
+
+.td.actionCol .centerCell {
+  width: 100%;
+  gap: var(--space-md);
+  padding-inline: var(--space-sm);
 }
 
 .footer {
